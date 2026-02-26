@@ -6,6 +6,7 @@ import ScrollProgress from "./components/helper/scroll-progress";
 import Navbar from "./components/navbar";
 import ErrorBoundary from "./components/ErrorBoundary";
 import SkipToContent from "./components/helper/SkipToContent";
+import ScrollToTopNavigation from "./components/helper/scroll-to-top-navigation";
 import "./css/card.scss";
 // Homepage Sections
 import HeroSection from "./components/homepage/hero-section";
@@ -25,6 +26,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 
 const HomePage = lazy(() => import("./pages/home"));
 const ServicesPage = lazy(() => import("./pages/services"));
+const BookingPage = lazy(() => import("./pages/booking"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
         <ToastContainer />
         <main id="main-content" className="min-h-screen relative mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white">
           <LazyMotion features={domAnimation}>
+            <ScrollToTopNavigation />
             <ScrollProgress />
             <Navbar />
 
@@ -42,6 +45,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<HomePage />} />
                 <Route path="/services" element={<ServicesPage />} />
+                <Route path="/booking" element={<BookingPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

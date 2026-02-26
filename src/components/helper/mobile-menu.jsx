@@ -98,13 +98,13 @@ function MobileMenu({ isOpen, onClose }) {
 
                         {/* Contact CTA */}
                         <div className="p-6 border-t border-[var(--card-border)] mt-auto">
-                            <a
-                                href="/#contact"
+                            <Link
+                                to="/booking"
                                 onClick={handleLinkClick}
                                 className="block w-full text-center rounded-full bg-gradient-to-r from-green-400 to-emerald-600 px-6 py-3 text-sm font-extrabold text-[#0d1224] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg uppercase tracking-widest"
                             >
-                                Hire Me
-                            </a>
+                                Book a Meeting
+                            </Link>
                         </div>
                     </motion.div>
                 </>

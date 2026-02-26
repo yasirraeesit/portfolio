@@ -123,7 +123,7 @@ function ServicesPage() {
                                         {/* Call to Action */}
                                         <div className="mt-auto">
                                             <a
-                                                href="/#contact"
+                                                href="/booking"
                                                 className="inline-flex items-center gap-2 text-emerald-400 font-bold group/btn text-sm uppercase tracking-widest hover:text-white transition-colors"
                                             >
                                                 Start a Project
@@ -149,7 +149,7 @@ function ServicesPage() {
                             Have a specialized <br /> <span className="text-emerald-400 italic">Project in mind?</span>
                         </h2>
                         <a
-                            href="/#contact"
+                            href="/booking"
                             className="inline-flex items-center gap-3 px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-[#0d1224] font-black rounded-full transition-all duration-300 hover:scale-110 active:scale-95 shadow-[0_0_20px_rgba(16,185,129,0.3)] relative z-10"
                         >
                             LET'S COLLABORATE
