@@ -6,7 +6,7 @@ function ProjectCard({ project }) {
 
   return (
     <div
-      className="group relative rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)]/40 backdrop-blur-md overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-[var(--accent-color)] flex flex-col h-full shadow-2xl"
+      className="group relative rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-[var(--accent-color)] flex flex-col h-full shadow-xl transform-gpu will-change-transform"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
