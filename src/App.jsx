@@ -8,17 +8,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import SkipToContent from "./components/helper/SkipToContent";
 import ScrollToTopNavigation from "./components/helper/scroll-to-top-navigation";
 import "./css/card.scss";
-// Homepage Sections
-import HeroSection from "./components/homepage/hero-section";
-import AboutSection from "./components/homepage/about";
-import Experience from "./components/homepage/experience";
-import Skills from "./components/homepage/skills";
-import Projects from "./components/homepage/projects";
-import GitHubActivity from "./components/homepage/github-activity";
-import Services from "./components/homepage/services";
-import Education from "./components/homepage/education";
-import Blog from "./components/homepage/blog";
-import ContactSection from "./components/homepage/contact";
+// Homepage Sections are loaded via pages/home
 
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";

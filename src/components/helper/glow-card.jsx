@@ -1,76 +1,52 @@
 "use client"
 
-import { useEffect } from 'react';
+import { useRef } from 'react';
 
 const GlowCard = ({ children, identifier }) => {
-  useEffect(() => {
-    const CONTAINER = document.querySelector(`.glow-container-${identifier}`);
-    const CARDS = document.querySelectorAll(`.glow-card-${identifier}`);
+  const containerRef = useRef(null);
+  const cardRef = useRef(null);
 
-    const CONFIG = {
-      proximity: 40,
-      spread: 80,
-      blur: 12,
-      gap: 32,
-      vertical: false,
-      opacity: 0,
-    };
+  const handlePointerMove = (event) => {
+    if (!cardRef.current || !containerRef.current) return;
 
-    const UPDATE = (event) => {
-      for (const CARD of CARDS) {
-        const CARD_BOUNDS = CARD.getBoundingClientRect();
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+    
+    // Set active state
+    card.style.setProperty('--active', 1);
 
-        if (
-          event?.x > CARD_BOUNDS.left - CONFIG.proximity &&
-          event?.x < CARD_BOUNDS.left + CARD_BOUNDS.width + CONFIG.proximity &&
-          event?.y > CARD_BOUNDS.top - CONFIG.proximity &&
-          event?.y < CARD_BOUNDS.top + CARD_BOUNDS.height + CONFIG.proximity
-        ) {
-          CARD.style.setProperty('--active', 1);
-        } else {
-          CARD.style.setProperty('--active', CONFIG.opacity);
-        }
+    // Calculate angle for the glow from the center of the card
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    let angle = (Math.atan2(event.clientY - centerY, event.clientX - centerX) * 180) / Math.PI;
+    angle = (angle < 0 ? angle + 360 : angle);
+    
+    card.style.setProperty('--start', angle + 90);
+  };
 
-        const CARD_CENTER = [
-          CARD_BOUNDS.left + CARD_BOUNDS.width * 0.5,
-          CARD_BOUNDS.top + CARD_BOUNDS.height * 0.5,
-        ];
-
-        let ANGLE =
-          (Math.atan2(event?.y - CARD_CENTER[1], event?.x - CARD_CENTER[0]) *
-            180) /
-          Math.PI;
-
-        ANGLE = ANGLE < 0 ? ANGLE + 360 : ANGLE;
-
-        CARD.style.setProperty('--start', ANGLE + 90);
-      }
-    };
-
-    document.body.addEventListener('pointermove', UPDATE);
-
-    const RESTYLE = () => {
-      CONTAINER.style.setProperty('--gap', CONFIG.gap);
-      CONTAINER.style.setProperty('--blur', CONFIG.blur);
-      CONTAINER.style.setProperty('--spread', CONFIG.spread);
-      CONTAINER.style.setProperty(
-        '--direction',
-        CONFIG.vertical ? 'column' : 'row'
-      );
-    };
-
-    RESTYLE();
-    UPDATE();
-
-    // Cleanup event listener
-    return () => {
-      document.body.removeEventListener('pointermove', UPDATE);
-    };
-  }, [identifier]);
+  const handlePointerLeave = () => {
+    if (!cardRef.current) return;
+    cardRef.current.style.setProperty('--active', 0);
+  };
 
   return (
-    <div className={`glow-container-${identifier} glow-container`}>
-      <article className={`glow-card glow-card-${identifier} h-full cursor-pointer border border-[var(--card-border)] transition-all duration-300 relative bg-[var(--card-bg)] text-[var(--text-secondary)] rounded-xl hover:border-transparent w-full`}>
+    <div 
+      ref={containerRef}
+      className={`glow-container-${identifier} glow-container h-full`}
+      style={{
+        '--gap': '32px',
+        '--blur': '12px',
+        '--spread': '80px',
+        '--direction': 'row'
+      }}
+    >
+      <article 
+        ref={cardRef}
+        onPointerMove={handlePointerMove}
+        onPointerLeave={handlePointerLeave}
+        className={`glow-card glow-card-${identifier} h-full cursor-pointer border border-[var(--card-border)] transition-all duration-300 relative bg-[var(--card-bg)] text-[var(--text-secondary)] rounded-xl hover:border-transparent w-full`}
+      >
         <div className="glows"></div>
         {children}
       </article>
@@ -79,3 +55,4 @@ const GlowCard = ({ children, identifier }) => {
 };
 
 export default GlowCard;
+

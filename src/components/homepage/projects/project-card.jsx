@@ -11,7 +11,7 @@ function ProjectCard({ project }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Media Section */}
-      <div className="relative h-48 sm:h-56 overflow-hidden bg-black/20">
+      <div className="relative aspect-video overflow-hidden bg-black/20 w-full">
         <div className="absolute top-3 left-3 flex space-x-1.5 z-20">
           <div className="h-2.5 w-2.5 rounded-full bg-red-500/80 shadow-sm"></div>
           <div className="h-2.5 w-2.5 rounded-full bg-amber-500/80 shadow-sm"></div>
