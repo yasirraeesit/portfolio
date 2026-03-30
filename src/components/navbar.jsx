@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -64,6 +65,7 @@ function Navbar() {
   // Reset active section when route changes
   useEffect(() => {
     if (location.pathname !== '/') {
+      // eslint-disable-next-line
       setActiveSection('');
     }
   }, [location]);
