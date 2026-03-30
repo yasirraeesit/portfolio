@@ -17,6 +17,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 const HomePage = lazy(() => import("./pages/home"));
 const ServicesPage = lazy(() => import("./pages/services"));
 const BookingPage = lazy(() => import("./pages/booking"));
+const ContactPage = lazy(() => import("./pages/contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
                 <Route path="/" element={<HomePage />} />
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/booking" element={<BookingPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>

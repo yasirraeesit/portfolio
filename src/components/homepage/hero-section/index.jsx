@@ -11,24 +11,23 @@ function HeroSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.3,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[var(--background-color)] pt-[100px] pb-8 lg:pb-12 overflow-hidden transition-colors">
-      {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-500/10 rounded-full filter blur-[100px] opacity-40" />
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-500/10 rounded-full filter blur-[100px] opacity-40" />
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500/10 rounded-full filter blur-[100px] opacity-40" />
+    <section className="relative min-h-screen flex items-center bg-[var(--background-color)] pt-[80px] overflow-hidden bg-grid">
+      {/* Decorative background glows - using opaque colors/gradients instead of blurs for scroll perf */}
+      <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/5" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-cyan-500/5" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -36,86 +35,119 @@ function HeroSection() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center"
         >
-          {/* Text Content */}
-          <div className="lg:col-span-7 space-y-8">
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium tracking-wider uppercase">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50 blur-[2px]"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              Available for new opportunities
+          {/* Main Hero Content */}
+          <div className="lg:col-span-7 flex flex-col items-start text-left">
+            <motion.div 
+               variants={itemVariants} 
+               className="mb-6 flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10"
+            >
+              <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
+              <span className="text-emerald-400 text-xs font-bold uppercase tracking-[0.2em]">Open to Collaboration</span>
             </motion.div>
 
-            <motion.div variants={itemVariants}>
-              <h1 className="text-5xl md:text-7xl font-bold text-[var(--text-primary)] leading-tight">
-                I build <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400 italic font-medium">web apps</span> that people actually use.
-              </h1>
-            </motion.div>
+            <motion.h1 
+              variants={itemVariants}
+              className="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8"
+            >
+              BUILDING <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500 italic">NEXT-GEN</span> <br />
+              WEB APPS.
+            </motion.h1>
 
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-              I'm <span className="text-[var(--text-primary)] font-semibold">{personalData.name}</span>, a software engineer who loves building things with React and Node.js. I take ideas from messy requirements to working products.
+            <motion.p 
+              variants={itemVariants}
+              className="max-w-xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mb-10"
+            >
+              I'm <span className="text-white font-bold">{personalData.name}</span>. 
+              I design and develop high-performance MERN stack applications with a focus on clean architecture and beautiful UI.
             </motion.p>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4">
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4 items-center">
               <button
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                className="px-8 py-4 bg-emerald-500 hover:bg-emerald-400 hover:text-black font-bold rounded-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-2"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="group relative px-8 py-4 bg-emerald-500 hover:bg-emerald-600 text-[#0d1224] font-black rounded-2xl transition-all hover:scale-105 flex items-center gap-2 shadow-[0_8px_20px_rgba(16,185,129,0.3)]"
               >
-                Let's Talk <MdEmail size={20} />
+                Hire Me <MdEmail size={20} className="group-hover:rotate-12 transition-transform" />
               </button>
-              <div className="relative group/btn overflow-hidden rounded-xl p-[2px] bg-gradient-to-r from-emerald-500 to-cyan-500">
+
+              <div className="relative p-[1px] rounded-2xl bg-gradient-to-b from-white/20 to-transparent">
                 <a
                   href={personalData.resume}
                   target="_blank"
-                  className="relative px-8 py-4 bg-[var(--background-color)] hover:bg-emerald-500/5 text-[var(--text-primary)] font-bold rounded-xl transition-all flex items-center gap-2"
+                  className="px-8 py-4 bg-[#111827] hover:bg-[#1a2333] text-white font-bold rounded-2xl transition-all flex items-center gap-2 border border-white/5"
                 >
-                  Download CV <HiDownload size={20} />
+                  Resume <HiDownload size={20} />
                 </a>
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex items-center gap-6 pt-4 border-t border-[var(--card-border)]">
-              <a href={personalData.github} target="_blank" rel="noreferrer" className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors">
+            <motion.div variants={itemVariants} className="mt-12 flex items-center gap-8 border-t border-white/10 pt-8 w-full max-w-xs">
+              <a href={personalData.github} target="_blank" className="text-white/40 hover:text-white transition-colors">
                 <FaGithub size={28} />
               </a>
-              <a href={personalData.linkedIn} target="_blank" rel="noreferrer" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors">
+              <a href={personalData.linkedIn} target="_blank" className="text-white/40 hover:text-emerald-400 transition-colors">
                 <FaLinkedin size={28} />
               </a>
             </motion.div>
           </div>
 
-          {/* Visual Side */}
-          <div className="lg:col-span-5 relative group">
+          {/* Visual Profile / Identity Card */}
+          <div className="lg:col-span-5 h-full flex items-center">
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative"
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative w-full aspect-square md:aspect-auto md:h-[600px] bg-gradient-to-br from-[#1a1f35] to-[#0d1224] rounded-[2.5rem] border border-white/10 p-1 project-card-glow"
             >
-              {/* Profile Image with Glassmorphism Effect */}
-              <div className="relative w-full aspect-square rounded-2xl overflow-hidden border border-white/10 shadow-2xl transition-all duration-500 group-hover:border-emerald-500/30">
-                <img
-                  src={personalData.profile}
-                  alt={personalData.name}
-                  loading="lazy"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0d1224] via-transparent to-transparent opacity-60" />
-              </div>
+              <div className="absolute inset-0 bg-grid opacity-20" />
+              
+              {/* Profile Wrapper */}
+              <div className="relative h-full w-full rounded-[2.2rem] overflow-hidden flex flex-col">
+                <div className="p-8 pb-4 flex items-center gap-4 border-b border-white/10">
+                   <div className="flex gap-1.5">
+                      <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                      <div className="w-3 h-3 rounded-full bg-amber-500/50" />
+                      <div className="w-3 h-3 rounded-full bg-emerald-500/50" />
+                   </div>
+                   <span className="text-[10px] font-mono text-white/30 uppercase tracking-[0.3em]">Identity_Kernel.log</span>
+                </div>
 
-              {/* Decorative Elements */}
-              <motion.div
-                animate={{ y: [0, -20, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -top-6 -right-6 w-24 h-24 bg-emerald-500/20 rounded-2xl blur-2xl -z-10"
-              />
-              <motion.div
-                animate={{ x: [0, 20, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-6 -left-6 w-32 h-32 bg-cyan-500/20 rounded-full blur-2xl -z-10"
-              />
+                <div className="flex-grow flex flex-col items-center justify-center p-8">
+                  <div className="relative mb-8 group">
+                    <div className="absolute -inset-4 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 opacity-20 blur-2xl group-hover:opacity-40 transition-opacity" />
+                    <img
+                      src={personalData.profile}
+                      alt={personalData.name}
+                      className="relative w-48 h-48 md:w-56 md:h-56 rounded-full object-cover border-4 border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                    />
+                  </div>
+
+                  <h2 className="text-3xl font-black text-white text-center mb-2">{personalData.name}</h2>
+                  <p className="text-emerald-400 font-mono text-xs uppercase tracking-widest mb-6">MERN Stack Engineer</p>
+
+                  <div className="grid grid-cols-2 gap-3 w-full">
+                     <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-center">
+                        <span className="block text-2xl font-black text-white">2+</span>
+                        <span className="text-[10px] text-white/40 uppercase font-bold tracking-tighter">Exp. Years</span>
+                     </div>
+                     <div className="p-4 rounded-2xl bg-white/5 border border-white/10 text-center">
+                        <span className="block text-2xl font-black text-emerald-400">10+</span>
+                        <span className="text-[10px] text-white/40 uppercase font-bold tracking-tighter">Projects</span>
+                     </div>
+                  </div>
+                </div>
+                
+                {/* Decorative Footer */}
+                <div className="p-6 bg-white/[0.02] border-t border-white/10 text-center">
+                   <div className="flex justify-center gap-2">
+                      <div className="px-2 py-1 bg-white/5 rounded-md text-[8px] text-white/40 font-mono">REACT</div>
+                      <div className="px-2 py-1 bg-white/5 rounded-md text-[8px] text-white/40 font-mono">NODE</div>
+                      <div className="px-2 py-1 bg-white/5 rounded-md text-[8px] text-white/40 font-mono">MONGODB</div>
+                   </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </motion.div>
