@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HiX } from 'react-icons/hi';
@@ -21,9 +22,10 @@ function MobileMenu({ isOpen, onClose }) {
         { label: 'EXPERIENCE', href: '/#experience' },
         { label: 'SKILLS', href: '/#skills' },
         { label: 'PROJECTS', href: '/#projects' },
-        { label: 'SERVICES', href: '/services' },
+        { label: 'GITHUB', href: '/#github' },
+        { label: 'SERVICES', href: '/#services' },
         { label: 'EDUCATION', href: '/#education' },
-        { label: 'BLOG', href: '/blog' },
+        { label: 'BLOG', href: '/#blogs' },
     ];
 
     const handleLinkClick = () => {
@@ -99,11 +101,11 @@ function MobileMenu({ isOpen, onClose }) {
                         {/* Contact CTA */}
                         <div className="p-6 border-t border-[var(--card-border)] mt-auto">
                             <Link
-                                to="/booking"
+                                to="/contact"
                                 onClick={handleLinkClick}
                                 className="block w-full text-center rounded-full bg-gradient-to-r from-green-400 to-emerald-600 px-6 py-3 text-sm font-extrabold text-[#0d1224] transition-all duration-300 hover:scale-105 active:scale-95 shadow-lg uppercase tracking-widest"
                             >
-                                Book a Meeting
+                                Contact Me
                             </Link>
                         </div>
                     </motion.div>

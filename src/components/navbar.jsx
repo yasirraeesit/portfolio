@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -15,19 +16,16 @@ function Navbar() {
     let timeoutId = null;
 
     const handleScroll = () => {
-      // 1. Immediate update for navbar shrink/expand
       setScrolled(window.scrollY > 10);
 
-      // 2. Throttled update for active section (prevents layout thrashing stutter)
       if (timeoutId) return;
 
       timeoutId = setTimeout(() => {
-        const sections = ['about', 'experience', 'skills', 'projects', 'education'];
+        const sections = ['about', 'experience', 'skills', 'projects', 'github', 'services', 'education', 'blogs'];
         const current = sections.find(section => {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
-            // Check if element is in viewport
             return rect.top <= 150 && rect.bottom >= 150;
           }
           return false;
@@ -50,154 +48,61 @@ function Navbar() {
         }
         setActiveSection(foundActive || '');
         timeoutId = null;
-      }, 100); // Trigger every 100ms during scroll
+      }, 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-
     return () => {
       window.removeEventListener('scroll', handleScroll);
       if (timeoutId) clearTimeout(timeoutId);
     };
   }, []);
 
-  // Reset active section when route changes
-  useEffect(() => {
-    if (location.pathname !== '/') {
-      setActiveSection('');
-    }
-  }, [location]);
+  const displayActiveSection = location.pathname === '/' ? activeSection : '';
+
+  const navLinks = [
+    { label: 'ABOUT', href: '/#about', id: 'about' },
+    { label: 'EXPERIENCE', href: '/#experience', id: 'experience' },
+    { label: 'SKILLS', href: '/#skills', id: 'skills' },
+    { label: 'PROJECTS', href: '/#projects', id: 'projects' },
+    { label: 'GITHUB', href: '/#github', id: 'github' },
+    { label: 'SERVICES', href: '/#services', id: 'services' },
+    { label: 'EDUCATION', href: '/#education', id: 'education' },
+    { label: 'BLOG', href: '/#blogs', id: 'blogs' },
+  ];
 
   return (
     <>
-      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] backdrop-blur-xl pointer-events-auto border-b transition-all duration-500 ${scrolled
-        ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10'
-        : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4'
+      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] pointer-events-auto border-b transition-all duration-500 ${scrolled
+        ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10 bg-opacity-95'
+        : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4 bg-opacity-90'
         }`}>
         <div className="relative flex items-center px-6 py-3">
-          {/* Logo - Left Side */}
           <div className="flex flex-1 items-center justify-start">
-            <Link
-              to="/"
-              className="text-[var(--accent-color)] text-xl md:text-2xl lg:text-3xl font-bold whitespace-nowrap tracking-tight">
+            <Link to="/" className="text-[var(--accent-color)] text-xl md:text-2xl lg:text-3xl font-bold whitespace-nowrap tracking-tight">
               YASIR RAEES
             </Link>
           </div>
 
-          {/* Menu Items - Hidden on mobile */}
           <div className="hidden md:flex flex-shrink-0 items-center justify-center">
-            <ul className="flex items-center space-x-2 lg:space-x-6 text-sm font-medium" id="navbar-default">
-              <li>
-                <a
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'about'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  href="/#about"
-                >
-                  ABOUT
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'about'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'experience'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  href="/#experience"
-                >
-                  EXPERIENCE
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'experience'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'skills'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  href="/#skills"
-                >
-                  SKILLS
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'skills'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </a>
-              </li>
-              <li>
-                <a
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'projects'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  href="/#projects"
-                >
-                  PROJECTS
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'projects'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </a>
-              </li>
-              <li>
-                <Link
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${location.pathname === '/services'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  to="/services"
-                >
-                  SERVICES
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${location.pathname === '/services'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </Link>
-              </li>
-              <li>
-                <a
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'education'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  href="/#education"
-                >
-                  EDUCATION
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'education'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </a>
-              </li>
-              <li>
-                <Link
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${location.pathname === '/blog'
-                    ? 'text-[var(--accent-color)] font-semibold'
-                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                    } relative group`}
-                  to="/blog"
-                >
-                  BLOG
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${location.pathname === '/blog'
-                    ? 'w-full bg-[var(--accent-color)]'
-                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                    }`}></span>
-                </Link>
-              </li>
+            <ul className="flex items-center space-x-1 lg:space-x-4 text-sm font-medium">
+              {navLinks.map((link) => (
+                <li key={link.id}>
+                  <a
+                    className={`block px-2 lg:px-3 py-2 no-underline outline-none hover:no-underline transition-all duration-300 ${displayActiveSection === link.id
+                      ? 'text-emerald-400 font-bold scale-110'
+                      : 'text-white/70 hover:text-emerald-400'
+                      } relative group font-mono text-[10px] tracking-[0.2em] uppercase`}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Right Side: Mobile Menu + Theme Toggle + Contact Button */}
           <div className="flex flex-1 items-center justify-end gap-3">
-            {/* Mobile Menu Button - visible on small screens */}
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="md:hidden p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors border border-white/10"
@@ -208,37 +113,16 @@ function Navbar() {
 
             <ThemeToggle />
 
-            <motion.div
-              animate={{
-                scale: [1, 1.03, 1],
-                boxShadow: ["0 0 0px rgba(16,185,129,0)", "0 0 15px rgba(16,185,129,0.2)", "0 0 0px rgba(16,185,129,0)"]
-              }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-              className="hidden sm:block"
+            <Link
+               className="relative group overflow-hidden hidden sm:flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2.5 text-xs font-black text-[#0d1224] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_15px_rgba(16,185,129,0.2)]"
+               to="/contact"
             >
-              <Link
-                className="relative group overflow-hidden flex items-center gap-1 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 lg:px-6 lg:py-2.5 text-xs lg:text-sm font-bold text-[var(--background-color)] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-                to="/booking"
-              >
-                {/* Shimmer Effect */}
-                <motion.div
-                  animate={{ x: ["-100%", "200%"] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear", repeatDelay: 0.5 }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-10"
-                />
-
-                <span className="relative z-10 uppercase tracking-wider font-semibold">Book a Meeting</span>
-              </Link>
-            </motion.div>
+               <span className="relative z-10 uppercase tracking-[0.2em]">Contact Me</span>
+            </Link>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <MobileMenu isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
     </>
   );

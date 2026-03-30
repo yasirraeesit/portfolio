@@ -2,6 +2,7 @@
 
 import { skillsData } from "@/utils/data/skills";
 import { skillsImage } from "@/utils/skill-image";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 
 function Skills() {
@@ -20,85 +21,86 @@ function Skills() {
     visible: { y: 0, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } }
   };
 
+  // Helper to get category specific colors
+  const getCategoryStyles = (category) => {
+    switch (category) {
+      case 'Frontend': return { text: 'text-cyan-400', border: 'border-cyan-500/20', bg: 'bg-cyan-500/5', glow: 'shadow-cyan-500/10' };
+      case 'Backend': return { text: 'text-violet-400', border: 'border-violet-500/20', bg: 'bg-violet-500/5', glow: 'shadow-violet-500/10' };
+      case 'Tools': return { text: 'text-emerald-400', border: 'border-emerald-500/20', bg: 'bg-emerald-500/5', glow: 'shadow-emerald-500/10' };
+      default: return { text: 'text-white', border: 'border-white/10', bg: 'bg-white/5', glow: 'shadow-white/5' };
+    }
+  };
+
   return (
-    <div id="skills" className="relative z-10 border-t my-12 lg:my-24 border-[var(--card-border)] transition-colors">
-      {/* Background decorative elements */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl" />
+    <div id="skills" className="relative py-24 lg:py-32 bg-[var(--background-color)]">
+      {/* Section Header */}
+      <div className="container mx-auto px-6 mb-20 text-center">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/5 border border-white/10"
+        >
+          <span className="w-2 h-2 rounded-full bg-violet-500 animate-pulse" />
+          <span className="text-violet-400 font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Technical Arsenal</span>
+        </motion.div>
+        <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-6">
+          MASTERING THE <br />
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-emerald-400 to-violet-500">ECOSYSTEM.</span>
+        </h2>
+        <p className="text-[var(--text-secondary)] max-w-2xl mx-auto text-lg md:text-xl">
+          I leverage a diverse set of technologies to build scalable, high-performance applications from scratch.
+        </p>
       </div>
 
-      <div className="flex justify-center -translate-y-[1px]">
-        <div className="w-3/4">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-[var(--accent-color)] to-transparent w-full" />
-        </div>
-      </div>
-
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex items-center">
-          <span className="w-16 h-[1px] bg-[var(--accent-color)]"></span>
-          <span className="mx-4 text-[var(--accent-color)] font-bold text-lg uppercase tracking-widest">Skills & Technologies</span>
-          <span className="w-16 h-[1px] bg-[var(--accent-color)]"></span>
-        </div>
-      </div>
-
-      <div className="w-full max-w-6xl mx-auto px-4">
-        {Object.entries(skillsData).map(([category, skills], index) => (
-          <motion.div
-            key={index}
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            className="mb-16 last:mb-0"
-          >
-            <motion.h3
-              variants={itemVariants}
-              className="text-2xl md:text-3xl font-bold text-center mb-10 flex items-center justify-center gap-4"
-            >
-              <span className="text-[var(--text-primary)]">{category}</span>
-              <span className="h-px w-12 bg-[var(--accent-color)]"></span>
-            </motion.h3>
-
+      <div className="max-w-7xl mx-auto px-6">
+        {Object.entries(skillsData).map(([category, skills]) => {
+          const styles = getCategoryStyles(category);
+          return (
             <motion.div
+              key={category}
               variants={containerVariants}
-              className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="mb-24 last:mb-0"
             >
-              {skills.map((skill, id) => (
-                <motion.div
-                  key={id}
-                  variants={itemVariants}
-                  whileHover={{ y: -8, scale: 1.03 }}
-                  className="group relative"
-                >
-                  <div className="relative overflow-hidden rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] p-6 text-center transition-all duration-300 hover:border-[var(--accent-color)]/50">
-                    <div className="flex flex-col items-center justify-center">
-                      <div className="mb-3 h-12 w-12 flex items-center justify-center transition-all duration-300 group-hover:scale-110">
-                        <img
-                          src={skillsImage(skill)}
-                          alt={skill}
-                          width={48}
-                          height={48}
-                          loading="lazy"
-                          className="h-full w-full object-contain"
-                        />
-                      </div>
-                      <h4 className="text-[var(--text-primary)] font-semibold text-sm md:text-base capitalize">
-                        {skill}
-                      </h4>
+              <div className="flex items-center gap-6 mb-12">
+                <h3 className={`text-2xl md:text-3xl font-black uppercase tracking-tight ${styles.text}`}>
+                  {category}
+                </h3>
+                <div className={`h-px flex-grow ${styles.bg.replace('bg-', 'bg-')}`} style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} />
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8">
+                {skills.map((skill) => (
+                  <motion.div
+                    key={skill}
+                    variants={itemVariants}
+                    whileHover={{ y: -10, scale: 1.05 }}
+                    className="group"
+                  >
+                    <div className={`relative h-40 md:h-48 flex flex-col items-center justify-center rounded-3xl bg-[#111827] border ${styles.border} p-6 transition-all duration-500 group-hover:${styles.border.replace('border-', 'border-')} group-hover:shadow-2xl ${styles.glow}`}>
+                       {/* Background highlight */}
+                       <div className={`absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${styles.bg}`} />
+                       
+                       <div className="relative z-10 w-16 h-16 md:w-20 md:h-20 mb-6 flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                          <img
+                            src={skillsImage(skill)}
+                            alt={skill}
+                            className="w-full h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                          />
+                       </div>
+                       <span className="relative z-10 text-white font-bold text-xs md:text-sm uppercase tracking-widest text-center">
+                          {skill}
+                       </span>
                     </div>
-
-                    {/* Hover effect overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[var(--accent-color)]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Glow effect */}
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[var(--accent-color)] to-emerald-500 rounded-xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-300 -z-10" />
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </motion.div>
-          </motion.div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

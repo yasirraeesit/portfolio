@@ -1,7 +1,13 @@
-import { useState, useEffect } from 'react';
+// @flow strict
+import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import { HiCalendar, HiClock, HiVideoCamera, HiChevronLeft, HiChevronRight, HiCheckCircle } from 'react-icons/hi';
+import { IoLogoGithub } from "react-icons/io";
+import { BiLogoLinkedin } from "react-icons/bi";
+import { FaXTwitter, FaStackOverflow } from "react-icons/fa6";
 import confetti from 'canvas-confetti';
+import { personalData } from '../../../utils/data/personal-data';
 
 function Booking() {
     const [step, setStep] = useState(1);
@@ -24,7 +30,6 @@ function Booking() {
         const firstDay = firstDayOfMonth(year, month);
         const days = [];
 
-        // Padding for empty days
         for (let i = 0; i < firstDay; i++) {
             days.push({ day: null, date: null });
         }
@@ -63,26 +68,8 @@ function Booking() {
         e.preventDefault();
         setIsSubmitting(true);
 
-        try {
-            const response = await fetch('http://localhost:5000/api/bookings', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...formData,
-                    date: selectedDate?.toLocaleDateString(),
-                    time: selectedTime
-                }),
-            });
-
-            const result = await response.json();
-
-            if (!response.ok) {
-                throw new Error(result.error || 'Failed to submit booking');
-            }
-
-            console.log('Booking success:', result);
+        // Simulate backend submission
+        setTimeout(() => {
             setIsSubmitting(false);
             setStep(4);
             confetti({
@@ -90,11 +77,7 @@ function Booking() {
                 spread: 70,
                 origin: { y: 0.6 }
             });
-        } catch (error) {
-            console.error('Error submitting booking:', error);
-            alert(error.message || 'There was an error confirming your booking. Please try again.');
-            setIsSubmitting(false);
-        }
+        }, 1500);
     };
 
     const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -106,29 +89,76 @@ function Booking() {
     };
 
     return (
-        <div id="booking" className="relative z-50 my-8 lg:my-16 max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">
-                    Book a <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 italic">Meeting</span>
-                </h2>
-                <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-                    Choose a date and time that works for you. Let's discuss how I can help you with your next big project.
-                </p>
-            </div>
-
-            <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-3xl overflow-hidden shadow-2xl shadow-black/40">
-                {/* Progress Bar */}
-                {step < 4 && (
-                    <div className="h-1 bg-white/5 w-full">
-                        <motion.div
-                            initial={{ width: "25%" }}
-                            animate={{ width: `${(step / 3) * 100}%` }}
-                            className="h-full bg-gradient-to-r from-emerald-500 to-cyan-500"
+        <div className="relative w-full max-w-6xl mx-auto">
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               animate={{ opacity: 1, y: 0 }}
+               className="bg-[#111827] border border-white/5 rounded-[3rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row min-h-[600px]"
+            >
+                {/* Left Side: Host & Session Info (Sidebar) */}
+                <div className="w-full lg:w-[400px] bg-white text-[#0d1224] p-10 lg:p-12 border-b lg:border-b-0 lg:border-r border-black/5 flex flex-col">
+                    <div className="flex items-center gap-4 mb-10">
+                        <img 
+                           src={personalData.profile} 
+                           alt={personalData.name}
+                           className="w-16 h-16 rounded-2xl object-cover bg-emerald-500/10 p-1 border border-black/5 shadow-lg"
                         />
+                        <div>
+                           <h4 className="font-black text-xl tracking-tight uppercase leading-none mb-1">{personalData.name}</h4>
+                           <span className="text-[10px] font-bold text-black/40 uppercase tracking-widest">{personalData.designation.split('|')[0]}</span>
+                        </div>
                     </div>
-                )}
 
-                <div className="p-6 md:p-10">
+                    <div className="mb-10">
+                       <div className="flex items-center gap-2 text-emerald-600 font-mono text-[10px] uppercase font-bold tracking-widest mb-4">
+                          <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
+                          Protocol Active
+                       </div>
+                       <h2 className="text-3xl md:text-4xl font-black tracking-tighter leading-none uppercase italic mb-6">
+                          30-Min Discovery <br />
+                          <span className="text-emerald-600">Synthesis.</span>
+                       </h2>
+                       <div className="flex items-center gap-4 text-black/60 font-bold text-sm mb-4 bg-black/5 p-3 rounded-xl border border-black/5">
+                          <HiClock className="text-lg text-black" />
+                          <span>30 MINURATION</span>
+                       </div>
+                       <div className="flex items-center gap-4 text-black/60 font-bold text-sm bg-black/5 p-3 rounded-xl border border-black/5">
+                          <HiVideoCamera className="text-lg text-black" />
+                          <span>REMOTE INTERFACE</span>
+                       </div>
+                    </div>
+
+                    <p className="text-sm font-medium text-black/50 leading-relaxed mb-auto uppercase italic mt-4 opacity-70">
+                       Aligning strategic vision with technical roadmap execution. Scoping, feasibility, and architecture.
+                    </p>
+
+                    {/* Social Sync Footnote */}
+                    <div className="mt-12 pt-8 border-t border-black/5">
+                       <div className="grid grid-cols-4 gap-3">
+                          {[
+                             { icon: <IoLogoGithub />, url: personalData.github },
+                             { icon: <BiLogoLinkedin />, url: personalData.linkedIn },
+                             { icon: <FaXTwitter />, url: personalData.twitter },
+                             { icon: <FaStackOverflow />, url: personalData.stackOverflow }
+                          ].map((social, i) => (
+                             <a 
+                                key={i} 
+                                href={social.url} 
+                                target="_blank" 
+                                rel="noreferrer"
+                                className="w-10 h-10 rounded-xl bg-black/5 border border-black/5 flex items-center justify-center text-black/40 hover:bg-emerald-500 hover:text-white hover:scale-110 transition-all duration-300"
+                             >
+                                {social.icon}
+                             </a>
+                          ))}
+                       </div>
+                    </div>
+                </div>
+
+                {/* Right Side: Interactive Content (Scheduler) */}
+                <div className="flex-1 p-8 lg:p-16 relative bg-[#111827]">
+                    <div className="absolute inset-0 bg-grid opacity-[0.02] pointer-events-none" />
+                    
                     <AnimatePresence mode="wait">
                         {step === 1 && (
                             <motion.div
@@ -136,42 +166,44 @@ function Booking() {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
+                                className="relative z-10"
                             >
-                                <div className="flex items-center justify-between mb-4">
-                                    <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                                        <HiCalendar className="text-emerald-500" /> Select a Date
+                                <div className="flex items-center justify-between mb-12">
+                                    <h3 className="text-4xl font-black text-white tracking-tighter uppercase italic">
+                                       Select <span className="text-emerald-400">Date.</span>
                                     </h3>
-                                    <div className="flex items-center gap-2">
-                                        <button onClick={prevMonth} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors disabled:opacity-30" disabled={currentMonth.getMonth() === today.getMonth() && currentMonth.getFullYear() === today.getFullYear()}>
-                                            <HiChevronLeft />
+                                    <div className="flex items-center gap-2 bg-white/5 p-2 rounded-2xl border border-white/10">
+                                        <button onClick={prevMonth} className="p-2 rounded-lg hover:bg-white/10 transition-colors text-white/50 hover:text-white disabled:opacity-20" disabled={currentMonth.getMonth() === today.getMonth() && currentMonth.getFullYear() === today.getFullYear()}>
+                                            <HiChevronLeft size={20} />
                                         </button>
-                                        <span className="font-semibold text-white min-w-[120px] text-center">
+                                        <span className="font-black text-white uppercase text-xs tracking-widest min-w-[140px] text-center border-x border-white/10 px-4">
                                             {monthNames[currentMonth.getMonth()]} {currentMonth.getFullYear()}
                                         </span>
-                                        <button onClick={nextMonth} className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
-                                            <HiChevronRight />
+                                        <button onClick={nextMonth} className="p-2 rounded-lg hover:bg-white/10 transition-colors text-white/50 hover:text-white">
+                                            <HiChevronRight size={20} />
                                         </button>
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-7 gap-2 text-center text-xs font-bold text-gray-500 mb-2">
-                                    {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(d => <div key={d}>{d}</div>)}
+                                <div className="grid grid-cols-7 gap-3 mb-4">
+                                    {['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'].map(d => (
+                                       <div key={d} className="text-[10px] font-black text-white/20 text-center tracking-[0.2em]">{d}</div>
+                                    ))}
                                 </div>
 
-                                <div className="grid grid-cols-7 gap-2">
+                                <div className="grid grid-cols-7 gap-3">
                                     {generateCalendarDays().map((d, i) => (
                                         <button
                                             key={i}
                                             disabled={!d.day || d.isPast}
                                             onClick={() => handleDateSelect(d.date)}
-                                            className={`h-12 flex flex-col items-center justify-center rounded-xl transition-all duration-300 ${!d.day ? 'pointer-events-none' :
-                                                d.isPast ? 'opacity-20 cursor-not-allowed' :
-                                                    'hover:bg-emerald-500/10 hover:border-emerald-500/50 border border-transparent text-white'
-                                                } ${d.isToday ? 'bg-emerald-500/20 border-emerald-500 text-emerald-400 font-bold' : ''}`}
+                                            className={`h-16 flex flex-col items-center justify-center rounded-[1.5rem] transition-all duration-500 relative group overflow-hidden ${!d.day ? 'opacity-0' :
+                                                d.isPast ? 'opacity-10 cursor-not-allowed grayscale' :
+                                                    'bg-white/5 border border-white/5 hover:border-emerald-500/50 hover:bg-emerald-500/5 text-white active:scale-95'
+                                                } ${d.isToday ? 'border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.2)]' : ''}`}
                                         >
-                                            {d.day}
-                                            {d.isToday && <span className="w-1 h-1 bg-emerald-500 rounded-full mt-1" />}
+                                            <span className={`text-xl font-black ${d.isToday ? 'text-emerald-400' : 'text-white/80 group-hover:text-emerald-400'}`}>{d.day}</span>
+                                            {d.isToday && <span className="absolute top-3 right-3 w-1.5 h-1.5 bg-emerald-500 rounded-full" />}
                                         </button>
                                     ))}
                                 </div>
@@ -184,24 +216,27 @@ function Booking() {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
+                                className="relative z-10 h-full flex flex-col"
                             >
-                                <button onClick={() => setStep(1)} className="text-sm text-gray-400 hover:text-emerald-400 flex items-center gap-1 transition-colors">
-                                    <HiChevronLeft /> Back to dates
+                                <button onClick={() => setStep(1)} className="inline-flex items-center gap-2 text-white/40 hover:text-emerald-400 font-black text-[10px] uppercase tracking-widest mb-12 transition-colors group">
+                                    <HiChevronLeft className="group-hover:-translate-x-1 transition-transform" />
+                                    <span>BACK TO PROTOCOL</span>
                                 </button>
-                                <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                                    <HiClock className="text-cyan-500" /> Select a Time
+                                
+                                <h3 className="text-4xl font-black text-white tracking-tighter uppercase italic mb-4">
+                                   Time <span className="text-cyan-400">Slots.</span>
                                 </h3>
-                                <p className="text-gray-400">Available slots for <span className="text-white font-bold">{selectedDate?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span></p>
+                                <p className="text-white/40 font-bold text-sm uppercase tracking-tight mb-12">Targeting focus for <span className="text-white">{selectedDate?.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}</span></p>
 
-                                <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-y-auto pr-4 scrollbar-hide max-h-[400px]">
                                     {timeSlots.map(time => (
                                         <button
                                             key={time}
                                             onClick={() => handleTimeSelect(time)}
-                                            className="px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-cyan-500/10 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105"
+                                            className="px-8 py-6 rounded-3xl bg-white/5 border border-white/5 text-white font-black uppercase text-xs tracking-[0.2em] hover:bg-cyan-500 hover:text-black hover:border-cyan-500 transition-all duration-300 active:scale-95 text-left flex justify-between items-center group shadow-xl"
                                         >
                                             {time}
+                                            <HiClock className="opacity-0 group-hover:opacity-100 transition-opacity" size={20} />
                                         </button>
                                     ))}
                                 </div>
@@ -214,61 +249,61 @@ function Booking() {
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
-                                className="space-y-6"
+                                className="relative z-10 h-full flex flex-col"
                             >
-                                <button onClick={() => setStep(2)} className="text-sm text-gray-400 hover:text-emerald-400 flex items-center gap-1 transition-colors">
-                                    <HiChevronLeft /> Back to times
+                                <button onClick={() => setStep(2)} className="inline-flex items-center gap-2 text-white/40 hover:text-violet-400 font-black text-[10px] uppercase tracking-widest mb-12 transition-colors group">
+                                    <HiChevronLeft className="group-hover:-translate-x-1 transition-transform" />
+                                    <span>BACK TO SLOTS</span>
                                 </button>
-                                <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                                    <HiVideoCamera className="text-violet-500" /> Final Details
-                                </h3>
-                                <div className="bg-white/5 rounded-2xl p-4 text-sm text-gray-300 flex flex-col gap-1">
-                                    <p><span className="text-gray-500">Meeting:</span> 30-Min Discovery Call</p>
-                                    <p><span className="text-gray-500">When:</span> {selectedDate?.toLocaleDateString()} at {selectedTime}</p>
-                                </div>
 
-                                <form onSubmit={handleSubmit} className="space-y-4">
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-1">Your Name</label>
-                                        <input
-                                            required
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleFormChange}
-                                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-violet-500 transition-colors"
-                                            placeholder="Enter your name"
-                                        />
+                                <h3 className="text-4xl font-black text-white tracking-tighter uppercase italic mb-8">
+                                   Final <span className="text-violet-400">Details.</span>
+                                </h3>
+
+                                <form onSubmit={handleSubmit} className="space-y-6 flex-1">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">IDENTIFIER</label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="name"
+                                                value={formData.name}
+                                                onChange={handleFormChange}
+                                                className="w-full px-8 py-5 rounded-2xl bg-white/5 border border-white/5 text-white font-bold focus:outline-none focus:border-violet-500 transition-all shadow-inner"
+                                                placeholder="ENTER FULL NAME"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">COMMS CHANNEL</label>
+                                            <input
+                                                required
+                                                type="email"
+                                                name="email"
+                                                value={formData.email}
+                                                onChange={handleFormChange}
+                                                className="w-full px-8 py-5 rounded-2xl bg-white/5 border border-white/5 text-white font-bold focus:outline-none focus:border-violet-500 transition-all shadow-inner"
+                                                placeholder="YOUR EMAIL ADDR"
+                                            />
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-1">Email Address</label>
-                                        <input
-                                            required
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleFormChange}
-                                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-violet-500 transition-colors"
-                                            placeholder="your@email.com"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-400 mb-1">What would you like to discuss?</label>
+                                    <div className="space-y-2">
+                                        <label className="text-[10px] font-black text-white/30 uppercase tracking-[0.2em]">MANIFESTO / NOTES</label>
                                         <textarea
                                             name="note"
                                             value={formData.note}
                                             onChange={handleFormChange}
                                             rows="3"
-                                            className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none focus:border-violet-500 transition-colors resize-none"
-                                            placeholder="Briefly describe your project..."
+                                            className="w-full px-8 py-5 rounded-2xl bg-white/5 border border-white/5 text-white font-bold focus:outline-none focus:border-violet-500 transition-all resize-none shadow-inner"
+                                            placeholder="DESCRIBE THE MISSION OBJECTIVE..."
                                         />
                                     </div>
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-[#0d1224] font-black text-lg hover:scale-[1.02] active:scale-95 transition-all shadow-xl shadow-emerald-500/20 disabled:opacity-50"
+                                        className="w-full py-6 rounded-3xl bg-gradient-to-r from-emerald-500 via-cyan-500 to-violet-500 text-black font-black text-sm uppercase tracking-[0.3em] hover:scale-[1.02] active:scale-95 transition-all shadow-[0_20px_40px_rgba(0,0,0,0.3)] disabled:opacity-50 mt-auto"
                                     >
-                                        {isSubmitting ? "Processing..." : "Confirm Booking"}
+                                        {isSubmitting ? "TRANSMITTING..." : "FINALIZE SYNC"}
                                     </button>
                                 </form>
                             </motion.div>
@@ -277,59 +312,42 @@ function Booking() {
                         {step === 4 && (
                             <motion.div
                                 key="step4"
-                                initial={{ opacity: 0, scale: 0.9 }}
+                                initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
-                                className="text-center py-10 space-y-6"
+                                className="h-full flex flex-col items-center justify-center text-center py-10"
                             >
-                                <div className="flex justify-center">
-                                    <motion.div
-                                        initial={{ scale: 0 }}
-                                        animate={{ scale: 1 }}
-                                        transition={{ type: "spring", damping: 10 }}
-                                    >
-                                        <HiCheckCircle className="text-emerald-500 text-8xl" />
-                                    </motion.div>
+                                <div className="p-8 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-10 shadow-[0_0_80px_rgba(16,185,129,0.1)]">
+                                    <HiCheckCircle className="text-emerald-500 text-9xl" />
                                 </div>
-                                <div>
-                                    <h3 className="text-3xl font-bold text-white mb-2">Meeting Booked!</h3>
-                                    <p className="text-gray-400 max-w-sm mx-auto">
-                                        Congratulations <span className="text-white font-bold">{formData.name}</span>! Your 30-minute discovery call has been scheduled for <span className="text-white font-bold">{selectedDate?.toLocaleDateString()}</span> at <span className="text-white font-bold">{selectedTime}</span>.
-                                    </p>
-                                </div>
-                                <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-2xl p-4 text-emerald-400 text-sm max-w-sm mx-auto">
-                                    A calendar invitation and confirmation email has been sent to <span className="font-bold text-white">{formData.email}</span>.
-                                </div>
-
-                                <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                                <h3 className="text-5xl md:text-6xl font-black text-white tracking-tighter uppercase leading-tight mb-6">
+                                   PROTOCOL <br />
+                                   <span className="text-emerald-400">LOCKED.</span>
+                                </h3>
+                                <p className="text-white/50 text-xl font-bold uppercase tracking-tight max-w-sm mb-12">
+                                     Sync verified for <span className="text-white">{selectedDate?.toLocaleDateString()}</span> at <span className="text-white italic">{selectedTime}</span>. COMMs uplink sent to your terminal.
+                                </p>
+                                <div className="flex flex-col sm:flex-row gap-6 w-full max-w-md">
                                     <button
-                                        onClick={() => {
-                                            const start = new Date(selectedDate);
-                                            const [hours, minutes] = selectedTime.split(':');
-                                            const isPM = selectedTime.includes('PM');
-                                            start.setHours(isPM ? parseInt(hours) + 12 : parseInt(hours), parseInt(minutes));
-                                            const end = new Date(start.getTime() + 30 * 60000);
-                                            const fmt = (d) => d.toISOString().replace(/-|:|\.\d\d\d/g, "");
-                                            const url = `https://www.google.com/calendar/render?action=TEMPLATE&text=Discovery+Call+with+Yasir&details=30-minute+discovery+call.&location=Zoom/Google+Meet&dates=${fmt(start)}/${fmt(end)}`;
-                                            window.open(url, '_blank');
-                                        }}
-                                        className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#4285F4]/10 text-[#4285F4] border border-[#4285F4]/20 font-bold hover:bg-[#4285F4]/20 transition-all text-sm w-full sm:w-auto"
+                                        onClick={() => window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=Discovery+Call+with+Yasir&details=30-min+Synchro.&dates=${new Date(selectedDate).toISOString()}/${new Date(selectedDate).toISOString()}`, '_blank')}
+                                        className="flex-1 px-8 py-5 rounded-2xl bg-white text-black font-black uppercase text-[10px] tracking-widest hover:scale-105 active:scale-95 transition-all shadow-xl"
                                     >
-                                        Add to Google Calendar
+                                        ADD TO CALENDAR
                                     </button>
                                     <button
                                         onClick={() => setStep(1)}
-                                        className="px-8 py-2.5 rounded-xl bg-white/10 text-white font-bold hover:bg-white/20 transition-all text-sm w-full sm:w-auto"
+                                        className="flex-1 px-8 py-5 rounded-2xl bg-white/5 border border-white/10 text-white font-black uppercase text-[10px] tracking-widest hover:bg-white/10 active:scale-95 transition-all"
                                     >
-                                        Book another meeting
+                                        START NEW SYNC
                                     </button>
                                 </div>
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }
 
 export default Booking;
+

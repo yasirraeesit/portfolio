@@ -4,82 +4,73 @@ import { FaCommentAlt, FaArrowRight, FaBookOpen } from 'react-icons/fa';
 
 function BlogCard({ blog }) {
   return (
-    <article className="group border border-[var(--card-border)] hover:border-[var(--accent-color)]/50 transition-all duration-500 bg-[var(--card-bg)] rounded-xl overflow-hidden flex flex-col h-full">
-      {/* Cover Image */}
-      <div className="h-44 lg:h-52 w-auto cursor-pointer overflow-hidden relative">
-        <img
-          src={blog?.cover_image || blog?.social_image}
-          height={1080}
-          width={1920}
-          alt={blog.title}
-          loading="lazy"
-          className="h-full w-full object-cover group-hover:scale-110 transition-all duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-        {/* Reading time badge */}
-        <div className="absolute top-3 right-3 bg-black/50 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
-          <FaBookOpen size={10} />
-          {blog.reading_time_minutes} min read
-        </div>
-      </div>
+    <article className="group p-1 rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-white/5 overflow-hidden transition-all duration-500 hover:scale-[1.02] flex flex-col h-full shadow-2xl">
+      <div className="bg-[#111827] rounded-[2.2rem] overflow-hidden flex flex-col h-full">
+         {/* Cover Image */}
+         <div className="h-52 md:h-64 w-full cursor-pointer overflow-hidden relative">
+            <img
+               src={blog?.cover_image || blog?.social_image}
+               alt={blog.title}
+               loading="lazy"
+               className="h-full w-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-80" />
+            {/* Reading time badge */}
+            <div className="absolute top-6 right-6 bg-black/40 backdrop-blur-md text-white text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-xl flex items-center gap-2 border border-white/10">
+               <FaBookOpen size={10} className="text-violet-400" />
+               {blog.reading_time_minutes} min
+            </div>
+         </div>
 
-      {/* Content */}
-      <div className="p-4 sm:p-5 flex flex-col flex-grow">
-        {/* Meta row */}
-        <div className="flex justify-between items-center text-[var(--text-secondary)] text-xs mb-3">
-          <p className="font-mono">{timeConverter(blog.published_at)}</p>
-          <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1 text-rose-400">
-              <BsHeartFill size={10} />
-              <span>{blog.public_reactions_count}</span>
-            </span>
-            {blog.comments_count > 0 && (
-              <span className="flex items-center gap-1 text-[var(--accent-color)]">
-                <FaCommentAlt size={10} />
-                <span>{blog.comments_count}</span>
-              </span>
-            )}
-          </div>
-        </div>
+         {/* Content */}
+         <div className="p-8 flex flex-col flex-grow">
+            {/* Meta row */}
+            <div className="flex justify-between items-center text-[var(--text-secondary)] mb-6">
+               <span className="font-mono text-[10px] uppercase font-bold tracking-widest bg-white/5 px-2 py-1 rounded-md">
+                  {timeConverter(blog.published_at)}
+               </span>
+               <div className="flex items-center gap-4">
+                  <span className="flex items-center gap-1.5 text-rose-400 text-xs font-bold">
+                     <BsHeartFill size={10} />
+                     <span>{blog.public_reactions_count}</span>
+                  </span>
+                  {blog.comments_count > 0 && (
+                     <span className="flex items-center gap-1.5 text-violet-400 text-xs font-bold">
+                        <FaCommentAlt size={10} />
+                        <span>{blog.comments_count}</span>
+                     </span>
+                  )}
+               </div>
+            </div>
 
-        {/* Title */}
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href={blog.url}
-          className="group/link block mb-3"
-        >
-          <h3 className="text-base sm:text-lg font-bold text-[var(--text-primary)] leading-snug hover:text-[var(--accent-color)] transition-colors line-clamp-2">
-            {blog.title}
-          </h3>
-        </a>
+            {/* Title */}
+            <a
+               target="_blank"
+               rel="noreferrer"
+               href={blog.url}
+               className="block mb-4"
+            >
+               <h3 className="text-xl md:text-2xl font-black text-white leading-tight hover:text-violet-400 transition-colors line-clamp-2 uppercase tracking-tighter">
+                  {blog.title}
+               </h3>
+            </a>
 
-        {/* Description */}
-        <p className="text-sm text-[var(--text-secondary)] line-clamp-3 leading-relaxed flex-grow mb-4">
-          {blog.description}
-        </p>
+            {/* Description */}
+            <p className="text-sm text-[var(--text-secondary)] line-clamp-3 leading-relaxed flex-grow mb-8 opacity-70 group-hover:opacity-100 transition-opacity">
+               {blog.description}
+            </p>
 
-        {/* Tags */}
-        {blog.tag_list?.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {blog.tag_list.slice(0, 3).map((tag, i) => (
-              <span key={i} className="px-2 py-0.5 text-[10px] rounded-md bg-[var(--accent-color)]/10 text-[var(--accent-color)] border border-[var(--accent-color)]/20">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        )}
-
-        {/* Read More */}
-        <a
-          target="_blank"
-          rel="noreferrer"
-          href={blog.url}
-          className="mt-auto flex items-center gap-1 text-[var(--accent-color)] text-xs font-bold uppercase tracking-wider hover:gap-2 transition-all duration-200 group/read"
-        >
-          Read Article
-          <FaArrowRight size={10} className="group-hover/read:translate-x-1 transition-transform" />
-        </a>
+            {/* Read More */}
+            <a
+               target="_blank"
+               rel="noreferrer"
+               href={blog.url}
+               className="mt-auto flex items-center justify-between w-full p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-violet-500/30 transition-all group/read"
+            >
+               <span className="text-white font-black text-[10px] uppercase tracking-[0.2em] group-hover:text-violet-400">Read Article</span>
+               <FaArrowRight size={12} className="text-white/20 group-hover/read:translate-x-1 group-hover/read:text-violet-400 transition-all" />
+            </a>
+         </div>
       </div>
     </article>
   );

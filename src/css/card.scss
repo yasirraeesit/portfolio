@@ -127,9 +127,7 @@
 
 // Custom Glassmorphism Styles
 [class*="ProjectCard"] {
-    background: rgba(var(--card-bg-rgb), 0.4);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(var(--card-bg-rgb), 0.95);
     
     &::after {
         content: '';

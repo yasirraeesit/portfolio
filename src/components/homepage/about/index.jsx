@@ -1,7 +1,8 @@
-import { personalData } from "@/utils/data/personal-data";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
-import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
-import GlowCard from "../../helper/glow-card";
+import { personalData } from "@/utils/data/personal-data";
+import { FaGraduationCap, FaMapMarkerAlt, FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
+import { BsFillLightningChargeFill } from "react-icons/bs";
 
 function AboutSection() {
   const containerVariants = {
@@ -9,8 +10,7 @@ function AboutSection() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -20,241 +20,124 @@ function AboutSection() {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 
-
-
   return (
-    <section id="about" className="relative py-24 lg:py-32 overflow-hidden bg-[var(--background-color)] transition-colors">
-      {/* Background Decorative Glows */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/5 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-violet-500/5 rounded-full blur-[150px]" />
-      </div>
-
+    <section id="about" className="relative py-24 lg:py-32 bg-[var(--background-color)]">
       <div className="container mx-auto px-6 max-w-7xl">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="mb-16"
+        >
+          <div className="flex items-center gap-2 mb-4">
+            <span className="w-8 h-1 bg-emerald-500 rounded-full" />
+            <span className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-[0.3em]">Discovery Phase</span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter">
+            THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">IDENTITY</span> <br />
+            BEHIND THE CODE.
+          </h2>
+        </motion.div>
+
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-stretch"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 gap-6"
         >
-          {/* Left Column: Developer IDE */}
-          <motion.div variants={itemVariants} className="flex flex-col h-full">
-            <div className="flex items-center gap-2 mb-6">
-              <div className="h-px w-12 bg-emerald-500" />
-              <span className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-widest">Compiling Profile...</span>
-            </div>
-
-            <div className="relative group flex-grow h-full min-h-[400px]">
-              {/* Window Header */}
-              <div className="absolute top-0 left-0 right-0 h-10 bg-[var(--card-border)] rounded-t-2xl border-t border-x border-[var(--card-border)] flex items-center px-4 gap-2 z-20 transition-colors">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f56]" />
-                  <div className="w-3 h-3 rounded-full bg-[#ffbd2e]" />
-                  <div className="w-3 h-3 rounded-full bg-[#27c93f]" />
-                </div>
-                <div className="flex-grow text-center text-[10px] text-[var(--text-secondary)] font-mono uppercase tracking-tighter">
-                  developer_profile.js — 1280×800
-                </div>
-              </div>
-
-              {/* IDE Content */}
-              <div className="absolute inset-0 pt-10 pb-6 px-6 bg-[var(--card-bg)]/80 backdrop-blur-xl rounded-2xl border border-[var(--card-border)] shadow-[var(--card-light-shadow)] overflow-hidden font-mono text-sm md:text-base cursor-text group-hover:border-emerald-500/30 transition-colors">
-                <div className="h-full overflow-auto scrollbar-hide py-4 relative">
-                  {/* Line Numbers Decorator */}
-                  <div className="absolute left-0 top-4 w-6 text-[var(--text-secondary)] text-right pr-4 select-none italic text-xs">
-                    {Array.from({ length: 14 }).map((_, i) => (
-                      <div key={i}>{i + 1}</div>
-                    ))}
-                  </div>
-
-                  <div className="pl-10 space-y-1">
-                    <div className="flex flex-wrap gap-x-2">
-                      <span className="text-pink-500">const</span>
-                      <span className="text-emerald-400">developer</span>
-                      <span className="text-[var(--text-primary)]">=</span>
-                      <span className="text-amber-300">{"{"}</span>
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">name:</span>
-                      <span className="text-emerald-300">'{personalData.name}'</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">role:</span>
-                      <span className="text-emerald-300">'Software Engineer'</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">specialty:</span>
-                      <span className="text-emerald-300">'MERN Stack'</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">location:</span>
-                      <span className="text-emerald-300">'{personalData.address}'</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">hardWorker:</span>
-                      <span className="text-orange-400">true</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">quickLearner:</span>
-                      <span className="text-orange-400">true</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-[var(--text-primary)]">problemSolver:</span>
-                      <span className="text-orange-400">true</span>,
-                    </div>
-                    <div className="pl-6 flex gap-2">
-                      <span className="text-pink-500 italic">hireable:</span>
-                      <span className="text-pink-500">function</span>
-                      <span className="text-[var(--text-primary)]">() {"{"}</span>
-                    </div>
-                    <div className="pl-12 flex gap-2">
-                      <span className="text-pink-500">return</span>
-                      <span className="text-amber-300">{"("}</span>
-                    </div>
-                    <div className="pl-18 flex flex-wrap gap-2 text-[var(--text-primary)]">
-                      this.hardWorker && this.problemSolver && <span className="text-cyan-400">this.skills.length</span> {">="} <span className="text-orange-400">5</span>
-                    </div>
-                    <div className="pl-12">
-                      <span className="text-amber-300">{")"}</span>;
-                    </div>
-                    <div className="pl-6 text-[var(--text-primary)]">{"}"}</div>
-                    <div className="text-amber-300">{"}"}</div>
-                  </div>
-
-                  {/* Typing Cursor Effect */}
-                  <motion.div
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="inline-block w-[2px] h-4 bg-emerald-500 ml-1 translate-y-0.5"
-                  />
-                </div>
-              </div>
-            </div>
+          {/* Tile 1: Main Bio - Large 2x4 */}
+          <motion.div 
+            variants={itemVariants}
+            className="md:col-span-4 lg:col-span-4 lg:row-span-2 bg-[#111827] rounded-[2rem] border border-white/10 p-8 md:p-12 relative overflow-hidden group"
+          >
+             <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                <BsFillLightningChargeFill size={120} className="text-emerald-500" />
+             </div>
+             <h3 className="text-3xl font-black text-white mb-6">Who am I?</h3>
+             <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mb-8">
+               I'm a <span className="text-white font-bold">Full Stack Engineer</span> based in Lahore, passionate about building digital products that combine beautiful design with high-performance backends.
+             </p>
+             <p className="text-lg text-[var(--text-secondary)] leading-relaxed">
+               My journey in tech is driven by a simple goal: to transform complex problems into elegant, scalable solutions that actually make a difference for users. I thrive in the MERN stack universe.
+             </p>
           </motion.div>
 
-          {/* Right Column: Bento Grid Stats */}
-          <div className="flex flex-col justify-between py-2">
-            <motion.div variants={itemVariants} className="mb-12">
-              <h2 className="text-5xl font-black text-[var(--text-primary)] mb-6 leading-[0.9]">
-                Building <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-500 italic">web apps</span> that work.
-              </h2>
-              <p className="text-[var(--text-secondary)] text-lg leading-relaxed max-w-lg mb-8">
-                I write code that solves real problems. Whether it's a dashboard, an API, or a full-stack app, I focus on making things that work well and are easy to maintain.
-              </p>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Stat 1: 1+ Year Experience */}
-              <GlowCard identifier="about-exp">
-                <div className="p-5 relative h-full">
-                  <img
-                    src="/blur-23.svg"
-                    alt="Hero"
-                    width={1080}
-                    height={200}
-                    loading="lazy"
-                    className="absolute bottom-0 left-0 opacity-80"
-                  />
-                  <div className="flex items-center gap-x-6 h-full">
-                    <div className="text-emerald-500 transition-all duration-300 hover:scale-125 flex-shrink-0">
-                      <FaBriefcase size={32} />
-                    </div>
-                    <div>
-                      <p className="text-base sm:text-lg mb-1 font-bold text-[var(--text-primary)]">
-                        1+ Year Experience
-                      </p>
-                      <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-                        Expertise in Building Real Products
-                      </p>
-                    </div>
-                  </div>
+          {/* Tile 2: Quick Stats - Square */}
+          <motion.div 
+            variants={itemVariants}
+            className="md:col-span-2 bg-emerald-500 rounded-[2rem] p-8 flex flex-col justify-between group hover:scale-[1.02] transition-transform shadow-[0_20px_40px_rgba(16,185,129,0.2)]"
+          >
+             <div className="flex justify-between items-start">
+                <div className="p-3 bg-black/20 rounded-2xl">
+                   <BsFillLightningChargeFill className="text-white" size={24} />
                 </div>
-              </GlowCard>
+                <span className="text-[10px] font-black text-white/50 uppercase tracking-widest">Active Status</span>
+             </div>
+             <div>
+                <span className="block text-6xl font-black text-white leading-none mb-2">1+</span>
+                <span className="text-sm font-bold text-[#0d1224] uppercase tracking-wider">Years Experience</span>
+             </div>
+          </motion.div>
 
-              {/* Stat 2: Modern Stack */}
-              <GlowCard identifier="about-stack">
-                <div className="p-5 relative h-full">
-                  <img
-                    src="/blur-23.svg"
-                    alt="Hero"
-                    width={1080}
-                    height={200}
-                    loading="lazy"
-                    className="absolute bottom-0 left-0 opacity-80"
-                  />
-                  <div className="flex items-center gap-x-6 h-full">
-                    <div className="text-cyan-500 transition-all duration-300 hover:scale-125 flex-shrink-0">
-                      <FaCode size={32} />
-                    </div>
-                    <div>
-                      <p className="text-base sm:text-lg mb-1 font-bold text-[var(--text-primary)]">
-                        Modern Stack
-                      </p>
-                      <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-                        React, Next.js, Node, MongoDB
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </GlowCard>
+          {/* Tile 3: Tech Stack Pills */}
+          <motion.div 
+            variants={itemVariants}
+            className="md:col-span-2 bg-[#1a1f35] rounded-[2rem] border border-white/5 p-8 flex flex-col justify-center gap-4"
+          >
+             <div className="flex flex-wrap gap-2">
+                {['React', 'Node.js', 'Next.js', 'MongoDB', 'PostgreSQL', 'Express', 'Tailwind', 'Docker'].map((tech) => (
+                   <span key={tech} className="px-3 py-1.5 bg-white/5 rounded-xl border border-white/10 text-[10px] font-mono font-bold text-emerald-400 uppercase tracking-wider">
+                      {tech}
+                   </span>
+                ))}
+             </div>
+             <span className="text-xs text-white/30 font-bold uppercase tracking-widest mt-4">Core Ecosystem</span>
+          </motion.div>
 
-              {/* Stat 3: Quality Code */}
-              <GlowCard identifier="about-quality">
-                <div className="p-5 relative h-full">
-                  <img
-                    src="/blur-23.svg"
-                    alt="Hero"
-                    width={1080}
-                    height={200}
-                    loading="lazy"
-                    className="absolute bottom-0 left-0 opacity-80"
-                  />
-                  <div className="flex items-center gap-x-6 h-full">
-                    <div className="text-amber-500 transition-all duration-300 hover:scale-125 flex-shrink-0">
-                      <FaGraduationCap size={32} />
-                    </div>
-                    <div>
-                      <p className="text-base sm:text-lg mb-1 font-bold text-[var(--text-primary)]">
-                        Quality Code
-                      </p>
-                      <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-                        Clean, Maintainable Code
-                      </p>
-                    </div>
-                  </div>
+          {/* Tile 4: Location/Education - Map-like tile */}
+          <motion.div 
+            variants={itemVariants}
+            className="md:col-span-3 bg-[#111827] rounded-[2rem] border border-white/10 p-8 flex flex-col justify-between group overflow-hidden relative"
+          >
+             <div className="absolute inset-0 bg-grid opacity-10 group-hover:opacity-20 transition-opacity" />
+             <div className="flex items-center gap-4 relative z-10">
+                <div className="p-3 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl">
+                   <FaMapMarkerAlt className="text-cyan-400" size={20} />
                 </div>
-              </GlowCard>
+                <div>
+                   <span className="block text-white font-bold text-lg">{personalData.address}</span>
+                   <span className="text-xs text-white/40 font-bold uppercase tracking-widest">Available Remotely</span>
+                </div>
+             </div>
+             <div className="mt-8 relative z-10 flex items-center gap-4">
+                 <div className="p-3 bg-violet-500/10 border border-violet-500/20 rounded-2xl">
+                    <FaGraduationCap className="text-violet-400" size={20} />
+                 </div>
+                 <span className="text-white/60 text-sm font-medium">BS (Hons) Computer Science</span>
+             </div>
+          </motion.div>
 
-              {/* Stat 4: Lahore, Pakistan */}
-              <GlowCard identifier="about-location">
-                <div className="p-5 relative h-full">
-                  <img
-                    src="/blur-23.svg"
-                    alt="Hero"
-                    width={1080}
-                    height={200}
-                    loading="lazy"
-                    className="absolute bottom-0 left-0 opacity-80"
-                  />
-                  <div className="flex items-center gap-x-6 h-full">
-                    <div className="text-violet-500 transition-all duration-300 hover:scale-125 flex-shrink-0">
-                      <FaMapMarkerAlt size={32} />
-                    </div>
-                    <div>
-                      <p className="text-base sm:text-lg mb-1 font-bold text-[var(--text-primary)]">
-                        {personalData.address}
-                      </p>
-                      <p className="text-xs sm:text-sm text-[var(--text-secondary)]">
-                        Open to Remote Work
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </GlowCard>
-            </motion.div>
-          </div>
+          {/* Tile 5: Connect / Socials */}
+          <motion.div 
+            variants={itemVariants}
+            className="md:col-span-3 bg-gradient-to-br from-indigo-600 to-violet-700 rounded-[2rem] p-8 flex flex-col justify-between relative overflow-hidden"
+          >
+             <div className="absolute top-[-20%] right-[-10%] w-48 h-48 bg-white/10 rounded-full blur-3xl" />
+             <h3 className="text-2xl font-black text-white relative z-10">Let's build <br /> together.</h3>
+             <div className="flex items-center gap-4 relative z-10 mt-8">
+                <a href={personalData.github} target="_blank" className="p-4 bg-white/10 hover:bg-white/20 rounded-2xl transition-colors">
+                   <FaGithub className="text-white" size={24} />
+                </a>
+                <a href={personalData.linkedIn} target="_blank" className="p-4 bg-white/10 hover:bg-white/20 rounded-2xl transition-colors">
+                   <FaLinkedin className="text-white" size={24} />
+                </a>
+                <a href={`mailto:${personalData.email}`} className="flex-grow flex items-center justify-center gap-3 p-4 bg-white text-[#0d1224] rounded-2xl font-black text-sm transition-transform hover:scale-105 active:scale-95">
+                   <FaEnvelope size={18} />
+                   CHAT
+                </a>
+             </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

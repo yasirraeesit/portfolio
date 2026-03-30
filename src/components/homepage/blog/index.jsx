@@ -1,7 +1,9 @@
 import { personalData } from '@/utils/data/personal-data';
 import { useEffect, useState } from 'react';
-import { FaArrowRight } from 'react-icons/fa';
+import { FaArrowRight, FaRss } from 'react-icons/fa';
 import BlogCard from './blog-card';
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion";
 
 function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -27,54 +29,55 @@ function Blog() {
   }, []);
 
   return (
-    <div id='blogs' className="relative z-10 border-t my-12 lg:my-24 border-[var(--card-border)] transition-colors">
-      <div className="w-[100px] h-[100px] bg-cyan-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl  opacity-20"></div>
+    <section id="blogs" className="relative py-24 lg:py-32 bg-[var(--background-color)]">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           className="mb-16 text-center lg:text-left"
+        >
+          <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
+            <span className="w-8 h-1 bg-violet-500 rounded-full" />
+            <span className="text-violet-400 font-mono text-[10px] font-bold uppercase tracking-[0.3em]">Latest Insights</span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none text-center lg:text-left">
+            EDITORIAL <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-indigo-500 italic">THOUGHTS.</span>
+          </h2>
+        </motion.div>
 
-      <div className="flex justify-center -translate-y-[1px]">
-        <div className="w-3/4">
-          <div className="h-[1px] bg-gradient-to-r from-transparent via-cyan-500 to-transparent  w-full" />
-        </div>
-      </div>
-
-      <div className="flex justify-center my-5 lg:py-8">
-        <div className="flex  items-center">
-          <span className="w-24 h-[2px] bg-[var(--card-border)]"></span>
-          <span className="bg-[var(--card-bg)] w-fit text-[var(--text-primary)] p-2 px-5 text-xl rounded-md border border-[var(--card-border)] transition-colors">
-            Blogs
-          </span>
-          <span className="w-24 h-[2px] bg-[var(--card-border)]"></span>
-        </div>
-      </div>
-
-      {isLoading ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
-          {[1, 2, 3].map((i) => (
-            <div key={i} className="h-64 bg-white/5 animate-pulse rounded-xl border border-white/10" />
-          ))}
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
-          {
-            blogs.slice(0, 6).map((blog, i) => (
+        {isLoading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-[450px] bg-white/5 animate-pulse rounded-[2.5rem] border border-white/10" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {blogs.slice(0, 6).map((blog, i) => (
               <BlogCard blog={blog} key={i} />
-            ))
-          }
-        </div>
-      )}
+            ))}
+          </div>
+        )}
 
-      {blogs.length > 0 && !isLoading && (
-        <div className="flex justify-center  mt-5 lg:mt-12">
-          <a
-            className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white no-underline transition-all duration-200 ease-out hover:text-white hover:no-underline md:font-semibold"
-            role="button"
-            href="/blog"
+        {blogs.length > 0 && !isLoading && (
+          <motion.div 
+             initial={{ opacity: 0 }}
+             whileInView={{ opacity: 1 }}
+             className="flex justify-center mt-20"
           >
-            <span>View More</span>
-            <FaArrowRight size={16} />
-          </a>
-        </div>
-      )}
-    </div>
+            <a
+              className="px-10 py-5 bg-white/5 border border-white/10 hover:bg-white text-white hover:text-[#0d1224] rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all flex items-center gap-3"
+              href="/blog"
+            >
+              <span>EXPLORE ALL ARTICLES</span>
+              <FaArrowRight size={14} />
+            </a>
+          </motion.div>
+        )}
+      </div>
+    </section>
   );
 };
 

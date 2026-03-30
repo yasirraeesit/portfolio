@@ -1,32 +1,37 @@
-import { FaCode, FaExternalLinkAlt, FaPlay } from 'react-icons/fa';
+import { FaCode, FaExternalLinkAlt, FaPlay, FaGithub } from 'react-icons/fa';
 import { memo, useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 
 function ProjectCard({ project }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
-      className="group relative rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)]/40 backdrop-blur-md overflow-hidden transition-all duration-500 hover:scale-[1.02] hover:border-[var(--accent-color)] flex flex-col h-full shadow-2xl"
+      className="group relative rounded-[2rem] border border-white/10 bg-[#111827] overflow-hidden transition-all duration-500 hover:border-emerald-500/30 flex flex-col h-full shadow-2xl transform-gpu will-change-transform"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
+      {/* Dynamic Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
       {/* Media Section */}
-      <div className="relative h-48 sm:h-56 overflow-hidden bg-black/20">
-        <div className="absolute top-3 left-3 flex space-x-1.5 z-20">
-          <div className="h-2.5 w-2.5 rounded-full bg-red-500/80 shadow-sm"></div>
-          <div className="h-2.5 w-2.5 rounded-full bg-amber-500/80 shadow-sm"></div>
-          <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/80 shadow-sm"></div>
+      <div className="relative aspect-video overflow-hidden bg-black/40 w-full group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500">
+        <div className="absolute top-4 left-4 flex space-x-1.5 z-20">
+          <div className="h-2.5 w-2.5 rounded-full bg-red-500/50" />
+          <div className="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
+          <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/50" />
         </div>
 
         {project.featured && (
-          <div className="absolute top-3 right-3 z-20">
-            <span className="px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-full shadow-lg">
-              ⭐ Featured
+          <div className="absolute top-4 right-4 z-20">
+            <span className="px-3 py-1 text-[9px] font-black uppercase tracking-widest bg-emerald-500 text-[#0d1224] rounded-full shadow-lg">
+               Featured
             </span>
           </div>
         )}
 
-        <div className="w-full h-full transition-transform duration-700 group-hover:scale-110">
+        <div className="w-full h-full transition-all duration-700 group-hover:scale-110 group-hover:rotate-1">
           {project.video ? (
             <div className="relative w-full h-full">
               <video
@@ -38,8 +43,10 @@ function ProjectCard({ project }) {
                 autoPlay={isHovered}
               />
               {!isHovered && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                  <FaPlay className="text-white/80 text-3xl" />
+                <div className="absolute inset-0 flex items-center justify-center bg-black/30 backdrop-blur-sm">
+                  <div className="p-4 bg-white/20 rounded-full backdrop-blur-md">
+                     <FaPlay className="text-white text-2xl" />
+                  </div>
                 </div>
               )}
             </div>
@@ -47,51 +54,49 @@ function ProjectCard({ project }) {
             <img
               src={project.image}
               alt={project.name}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/10 to-transparent">
-              <span className="text-violet-500/30 font-bold text-4xl uppercase tracking-widest transition-opacity group-hover:opacity-100">
+            <div className="w-full h-full flex items-center justify-center bg-[#1a1f35]">
+              <span className="text-emerald-500/20 font-black text-6xl uppercase tracking-[0.5em] group-hover:scale-125 transition-transform">
                 {project.name.charAt(0)}
               </span>
             </div>
           )}
         </div>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
       </div>
 
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-xl lg:text-2xl font-bold text-[var(--text-primary)] mb-2 group-hover:text-[var(--accent-color)] transition-colors">
+      <div className="p-8 flex flex-col flex-grow relative z-10">
+        <div className="mb-4 flex flex-wrap gap-2">
+           {project.tools.slice(0, 3).map((tool, idx) => (
+              <span key={idx} className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[8px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
+                 {tool}
+              </span>
+           ))}
+           {project.tools.length > 3 && (
+              <span className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[8px] font-mono font-bold text-white/40 uppercase tracking-widest">
+                 +{project.tools.length - 3}
+              </span>
+           )}
+        </div>
+
+        <h3 className="text-2xl font-black text-white mb-3 group-hover:text-emerald-400 transition-colors leading-none tracking-tight">
           {project.name}
         </h3>
 
-        <p className="text-xs uppercase font-semibold text-[var(--accent-color)] opacity-70 mb-3 tracking-widest">
-          {project.role}
-        </p>
-
-        <p className="text-sm text-[var(--text-secondary)] mb-6 line-clamp-3 leading-relaxed">
+        <p className="text-sm text-[var(--text-secondary)] mb-8 line-clamp-3 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
           {project.description}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-6">
-          {project.tools.map((tool, index) => (
-            <span
-              key={index}
-              className="px-2.5 py-0.5 text-[10px] font-medium rounded-md bg-violet-500/10 text-violet-400 border border-violet-500/20"
-            >
-              {tool}
-            </span>
-          ))}
-        </div>
-
-        <div className="flex items-center gap-3 mt-auto pt-2">
+        <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5">
           <a
             href={project.code || "#"}
             target="_blank" rel="noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white bg-white/5 border border-white/10 rounded-lg hover:bg-[var(--accent-color)] hover:border-[var(--accent-color)] transition-all duration-300"
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300"
           >
-            <FaCode size={14} />
+            <FaGithub size={14} />
             <span>Code</span>
           </a>
 
@@ -99,23 +104,21 @@ function ProjectCard({ project }) {
             <a
               href={project.demo}
               target="_blank" rel="noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-white bg-[var(--accent-color)] border border-[var(--accent-color)] rounded-lg hover:brightness-125 transition-all duration-300 shadow-lg shadow-[var(--accent-color)]/20"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#0d1224] bg-emerald-500 rounded-xl hover:bg-emerald-400 transition-all duration-300 shadow-xl shadow-emerald-500/10"
             >
               <FaExternalLinkAlt size={12} />
               <span>Demo</span>
             </a>
           ) : (
             <div
-              className="flex-1 flex items-center justify-center gap-2 px-4 py-2 text-[10px] font-bold uppercase tracking-wider text-gray-400 bg-white/5 border border-white/5 rounded-lg opacity-50 cursor-not-allowed"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/20 bg-white/5 border border-white/5 rounded-xl cursor-not-allowed"
             >
               <FaExternalLinkAlt size={12} />
-              <span>Soon</span>
+              <span>Layer</span>
             </div>
           )}
         </div>
       </div>
-
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[var(--accent-color)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
 }
