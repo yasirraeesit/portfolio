@@ -3,6 +3,7 @@ import { contactsData } from '../utils/data/contactsData';
 import { useEffect, useState } from 'react';
 import { FaArrowRight, FaClock, FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 import { SiFramer, SiNextdotjs, SiTailwindcss, SiJavascript } from "react-icons/si";
+import { Link } from 'react-router-dom';
 
 function Footer() {
   const [time, setTime] = useState("");
@@ -99,7 +100,7 @@ function Footer() {
                   </li>
                 </ul>
               </div>
-              
+
               {/* Connect Column */}
               <div>
                 <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Connect</h4>
@@ -181,13 +182,13 @@ function Footer() {
           {/* Contact CTA */}
           <div className="flex flex-col">
             <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Let's Connect</h4>
-            <a
-              href="/#contact"
+            <Link
+              to="/booking"
               className="group flex items-center gap-3 text-emerald-400 font-bold text-lg hover:text-[var(--text-primary)] transition-colors mb-6"
             >
               START A PROJECT
               <FaArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
-            </a>
+            </Link>
 
             {/* Social Media Links */}
             <div className="flex space-x-4 mb-6">

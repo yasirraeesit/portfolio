@@ -2,7 +2,8 @@
 
 A modern, responsive, and interactive developer portfolio built with React, Vite, and Tailwind CSS.
 
-![Portfolio Preview](./public/preview.png)
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/5857823b-bfb9-4a04-adc8-ce3c6ae6e58c" />
+
 
 ## 🚀 Features
 

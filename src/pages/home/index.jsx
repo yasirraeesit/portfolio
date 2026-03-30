@@ -1,7 +1,6 @@
 import { Suspense, lazy } from "react";
 import HeroSection from "../../components/homepage/hero-section";
 import AboutSection from "../../components/homepage/about";
-
 // Lazy load below-the-fold sections for performance
 const Experience = lazy(() => import("../../components/homepage/experience"));
 const Skills = lazy(() => import("../../components/homepage/skills"));
@@ -18,7 +17,6 @@ function HomePage() {
             {/* Above the fold (load immediately) */}
             <HeroSection />
             <AboutSection />
-
             {/* Below the fold (lazy loaded when scrolling) */}
             <Suspense fallback={<div className="min-h-[200px] flex items-center justify-center text-emerald-500/50">Loading section...</div>}>
                 <Experience />

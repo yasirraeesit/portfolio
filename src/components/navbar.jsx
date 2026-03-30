@@ -48,7 +48,6 @@ function Navbar() {
             }
           }
         }
-
         setActiveSection(foundActive || '');
         timeoutId = null;
       }, 100); // Trigger every 100ms during scroll
@@ -71,11 +70,10 @@ function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] backdrop-blur-xl pointer-events-auto border-b transition-all duration-500 ${
-        scrolled 
-          ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10' 
-          : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4'
-      }`}>
+      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] backdrop-blur-xl pointer-events-auto border-b transition-all duration-500 ${scrolled
+        ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10'
+        : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4'
+        }`}>
         <div className="relative flex items-center px-6 py-3">
           {/* Logo - Left Side */}
           <div className="flex flex-1 items-center justify-start">
@@ -90,122 +88,108 @@ function Navbar() {
           <div className="hidden md:flex flex-shrink-0 items-center justify-center">
             <ul className="flex items-center space-x-2 lg:space-x-6 text-sm font-medium" id="navbar-default">
               <li>
-                <a 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    activeSection === 'about' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <a
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'about'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   href="/#about"
                 >
                   ABOUT
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    activeSection === 'about' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'about'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </a>
               </li>
               <li>
-                <a 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    activeSection === 'experience' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <a
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'experience'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   href="/#experience"
                 >
                   EXPERIENCE
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    activeSection === 'experience' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'experience'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </a>
               </li>
               <li>
-                <a 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    activeSection === 'skills' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <a
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'skills'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   href="/#skills"
                 >
                   SKILLS
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    activeSection === 'skills' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'skills'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </a>
               </li>
               <li>
-                <a 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    activeSection === 'projects' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <a
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'projects'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   href="/#projects"
                 >
                   PROJECTS
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    activeSection === 'projects' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'projects'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </a>
               </li>
               <li>
-                <Link 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    location.pathname === '/services' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <Link
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${location.pathname === '/services'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   to="/services"
                 >
                   SERVICES
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    location.pathname === '/services' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${location.pathname === '/services'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </Link>
               </li>
               <li>
-                <a 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    activeSection === 'education' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <a
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${activeSection === 'education'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   href="/#education"
                 >
                   EDUCATION
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    activeSection === 'education' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${activeSection === 'education'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </a>
               </li>
               <li>
-                <Link 
-                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${
-                    location.pathname === '/blog' 
-                      ? 'text-[var(--accent-color)] font-semibold' 
-                      : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
-                  } relative group`} 
+                <Link
+                  className={`block px-3 py-2 no-underline outline-none hover:no-underline transition-colors duration-300 ${location.pathname === '/blog'
+                    ? 'text-[var(--accent-color)] font-semibold'
+                    : 'text-[var(--text-primary)] hover:text-[var(--accent-color)]'
+                    } relative group`}
                   to="/blog"
                 >
                   BLOG
-                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
-                    location.pathname === '/blog' 
-                      ? 'w-full bg-[var(--accent-color)]' 
-                      : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
-                  }`}></span>
+                  <span className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${location.pathname === '/blog'
+                    ? 'w-full bg-[var(--accent-color)]'
+                    : 'w-0 bg-[var(--accent-color)] group-hover:w-full'
+                    }`}></span>
                 </Link>
               </li>
             </ul>
@@ -236,9 +220,9 @@ function Navbar() {
               }}
               className="hidden sm:block"
             >
-              <a
+              <Link
                 className="relative group overflow-hidden flex items-center gap-1 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 px-4 py-2 lg:px-6 lg:py-2.5 text-xs lg:text-sm font-bold text-[var(--background-color)] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-                href="/#contact"
+                to="/booking"
               >
                 {/* Shimmer Effect */}
                 <motion.div
@@ -247,8 +231,8 @@ function Navbar() {
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-10"
                 />
 
-                <span className="relative z-10 uppercase tracking-wider font-semibold">Hire Me</span>
-              </a>
+                <span className="relative z-10 uppercase tracking-wider font-semibold">Book a Meeting</span>
+              </Link>
             </motion.div>
           </div>
         </div>
