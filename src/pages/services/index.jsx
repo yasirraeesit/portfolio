@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; // eslint-disable-line no-unused-vars
 import { BiCodeAlt } from "react-icons/bi";
 import { FaDatabase, FaLayerGroup, FaWordpress, FaArrowRight } from "react-icons/fa";
 import GlowCard from "../../components/helper/glow-card";
@@ -51,7 +51,7 @@ function ServicesPage() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0d1224] relative overflow-hidden">
+        <div className="min-h-screen bg-[var(--background-color)] relative overflow-hidden">
             {/* Background Decorative Glows */}
             <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none">
                 <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[150px] animate-pulse" />

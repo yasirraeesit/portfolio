@@ -16,9 +16,12 @@ export const skillsData = {
     'MySQL',
     'Dot.Net'
   ],
-  Others: [
+  Tools: [
     'Git',
     'GitHub',
-    'Wordpress'
+    'Figma',
+    'Wordpress',
+    'ViteJS',
+    'Docker'
   ]
 };

@@ -7,6 +7,8 @@ import Navbar from "./components/navbar";
 import ErrorBoundary from "./components/ErrorBoundary";
 import SkipToContent from "./components/helper/SkipToContent";
 import "./css/card.scss";
+
+
 import { Routes, Route } from "react-router-dom";
 import { Suspense, lazy } from "react";
 import { LazyMotion, domAnimation } from "framer-motion";

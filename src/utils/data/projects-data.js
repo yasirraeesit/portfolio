@@ -68,6 +68,18 @@ export const projectsData = [
         image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836',
         video: '',
         featured: true,
+    },
+    {
+        id: 7,
+        name: 'CompanyBull',
+        description: "A comprehensive application featuring real-data integration from a MongoDB backend APIs. It includes secure authentication, dynamic data fetching, and state management for seamless user experiences.",
+        tools: ['React', 'Node.js', 'Express', 'MongoDB'],
+        role: 'Full Stack Developer',
+        code: 'https://github.com/developer-yasir/companybull-code-hub',
+        demo: '',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f',
+        video: '',
+        featured: true,
     }
 ];
 
