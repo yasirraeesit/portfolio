@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
 import { personalData } from "../../../utils/data/personal-data";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -24,10 +25,10 @@ function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center bg-[var(--background-color)] pt-[100px] pb-8 lg:pb-12 overflow-hidden transition-colors">
       {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-        <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 -left-4 w-72 h-72 bg-emerald-500/10 rounded-full filter blur-[100px] opacity-40" />
+        <div className="absolute top-0 -right-4 w-72 h-72 bg-blue-500/10 rounded-full filter blur-[100px] opacity-40" />
+        <div className="absolute -bottom-8 left-20 w-72 h-72 bg-purple-500/10 rounded-full filter blur-[100px] opacity-40" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
@@ -41,7 +42,7 @@ function HeroSection() {
           <div className="lg:col-span-7 space-y-8">
             <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium tracking-wider uppercase">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-50 blur-[2px]"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               Available for new opportunities
@@ -64,7 +65,7 @@ function HeroSection() {
               >
                 Let's Talk <MdEmail size={20} />
               </button>
-              <div className="relative group/btn overflow-hidden rounded-xl p-[2px] bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 bg-[length:200%_100%] animate-gradient-shift">
+              <div className="relative group/btn overflow-hidden rounded-xl p-[2px] bg-gradient-to-r from-emerald-500 to-cyan-500">
                 <a
                   href={personalData.resume}
                   target="_blank"

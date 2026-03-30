@@ -1,4 +1,5 @@
 import { personalData } from "@/utils/data/personal-data";
+// eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaCode, FaGraduationCap, FaMapMarkerAlt, FaBriefcase } from "react-icons/fa";
 import GlowCard from "../../helper/glow-card";
@@ -59,7 +60,7 @@ function AboutSection() {
               </div>
 
               {/* IDE Content */}
-              <div className="absolute inset-0 pt-10 pb-6 px-6 bg-[var(--card-bg)]/80 backdrop-blur-xl rounded-2xl border border-[var(--card-border)] shadow-[var(--card-light-shadow)] overflow-hidden font-mono text-sm md:text-base cursor-text group-hover:border-emerald-500/30 transition-colors">
+              <div className="absolute inset-0 pt-10 pb-6 px-6 bg-[var(--card-bg)]/95 rounded-2xl border border-[var(--card-border)] shadow-[var(--card-light-shadow)] overflow-hidden font-mono text-sm md:text-base cursor-text group-hover:border-emerald-500/30 transition-colors">
                 <div className="h-full overflow-auto scrollbar-hide py-4 relative">
                   {/* Line Numbers Decorator */}
                   <div className="absolute left-0 top-4 w-6 text-[var(--text-secondary)] text-right pr-4 select-none italic text-xs">

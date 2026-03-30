@@ -72,9 +72,9 @@ function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] backdrop-blur-xl pointer-events-auto border-b transition-all duration-500 ${scrolled
-        ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10'
-        : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4'
+      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] pointer-events-auto border-b transition-all duration-500 ${scrolled
+        ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10 bg-opacity-95'
+        : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4 bg-opacity-90'
         }`}>
         <div className="relative flex items-center px-6 py-3">
           {/* Logo - Left Side */}
