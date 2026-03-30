@@ -89,7 +89,7 @@ function Booking() {
     };
 
     return (
-        <div className="relative w-full max-w-6xl mx-auto">
+        <div className="relative w-full max-w-7xl mx-auto">
             <motion.div 
                initial={{ opacity: 0, y: 20 }}
                animate={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ function Booking() {
                           <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
                           Protocol Active
                        </div>
-                       <h2 className="text-3xl md:text-4xl font-black tracking-tighter leading-none uppercase italic mb-6">
+                       <h2 className="text-3xl md:text-5xl font-black tracking-tighter leading-[0.85] uppercase italic mb-8">
                           30-Min Discovery <br />
                           <span className="text-emerald-600">Synthesis.</span>
                        </h2>

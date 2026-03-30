@@ -1,8 +1,8 @@
 export const projectsData = [
     {
         id: 1,
-        name: 'AI Interview Copilot (Interview Helper)',
-        description: "An AI assistant that helps during technical interviews. It listens to the conversation using speech recognition and gives you smart suggestions in real-time using Llama 3. Features include screenshot analysis for coding challenges and speaking pace monitoring. Built with React and Node.js.",
+        name: 'AI Interview Copilot',
+        description: "Technical interviews are stressful, so I built this AI assistant to help developers stay prepared. It listens to your conversation in real-time and provides smart suggestions, coding tips, and even monitors your speaking pace to keep you on track.",
         tools: ['React', 'Node.js', 'Express', 'MongoDB', 'Groq SDK', 'Llama 3', 'Web Speech API', 'Tailwind CSS', 'Framer Motion'],
         role: 'Full Stack Developer',
         code: 'https://github.com/developer-yasir/Interview-Helper',
@@ -14,7 +14,7 @@ export const projectsData = [
     {
         id: 2,
         name: 'Support Desk',
-        description: "A complete support ticket system with different permissions for customers, agents, and admins. Features include ticket management, commenting, email notifications, and analytics. Built with React, Node.js, and MongoDB.",
+        description: "I created this professional platform to help businesses handle customer issues without the chaos. It’s a secure, easy-to-use ticket system that ensures every customer gets the help they need, exactly when they need it.",
         tools: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'JavaScript', 'Tailwind CSS', 'Vite'],
         role: 'Full Stack Developer',
         code: 'https://github.com/developer-yasir/support-desk',
@@ -25,8 +25,8 @@ export const projectsData = [
     },
     {
         id: 3,
-        name: 'Smart Retail Dashboard (Shopsense)',
-        description: 'A retail analytics dashboard that uses computer vision to track customer movement and generate heatmaps. Also includes inventory management with low-stock alerts. Built with MERN stack and TensorFlow.js.',
+        name: 'Shopsense (Smart Retail)',
+        description: 'Shopsense helps store owners understand their customers better. By using smart computer vision, it tracks movement and creates heatmaps, showing owners exactly which parts of their shop are the most popular.',
         tools: ['MERN Stack', 'TensorFlow.js', 'React'],
         role: 'Full Stack Developer',
         code: 'https://github.com/developer-yasir/Shopsense',
@@ -37,8 +37,8 @@ export const projectsData = [
     },
     {
         id: 4,
-        name: 'Smart Chat App (Collab Talk AI)',
-        description: 'A real-time chat app with channels, direct messages, and AI features like message summaries and smart autocomplete. Includes file sharing and presence detection. Built with MERN stack and Socket.io.',
+        name: 'Collab Talk AI (Smart Chat)',
+        description: 'More than just a chat tool—it\'s an AI-powered hub. It can summarize long threads and help you type faster, making team communication much more efficient and less overwhelming for everyone involved.',
         tools: ['MERN Stack', 'AI', 'Socket.io', 'OpenAI API'],
         code: 'https://github.com/developer-yasir/collab-talk-ai',
         role: 'Full Stack Developer',
@@ -48,8 +48,8 @@ export const projectsData = [
     },
     {
         id: 5,
-        name: 'Finance Tracker (Cash Flow Vision)',
-        description: "A finance tracker that helps you manage income and expenses with automatic recurring transactions. Uses machine learning to forecast cash flow and includes data visualization with export options.",
+        name: 'Cash Flow Vision (Finance Finder)',
+        description: "I developed this tool to take the stress out of money management. It uses machine learning to predict your future spending and income, giving you a crystal-clear view of your financial health.",
         tools: ['MERN Stack', 'ML', 'Recharts'],
         code: 'https://github.com/developer-yasir/cash-flow-vision',
         demo: '',
@@ -59,8 +59,8 @@ export const projectsData = [
     },
     {
         id: 6,
-        name: 'Befoody (Food Delivery App)',
-        description: "A food delivery app with separate dashboards for customers, restaurants, and admins. Features include cart management, order tracking, and secure authentication. Built with MERN stack.",
+        name: 'Befoody (Food Delivery)',
+        description: "A complete food delivery ecosystem. I designed smooth, separate experiences for customers, restaurants, and admins, ensuring that every order is handled perfectly from the kitchen all the way to the doorstep.",
         tools: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT', 'Context API', 'Axios'],
         code: 'https://github.com/developer-yasir/befoody',
         demo: 'https://developer-yasir.github.io/befoody/',
@@ -72,7 +72,7 @@ export const projectsData = [
     {
         id: 7,
         name: 'CompanyBull',
-        description: "A comprehensive application featuring real-data integration from a MongoDB backend APIs. It includes secure authentication, dynamic data fetching, and state management for seamless user experiences.",
+        description: "A high-performance dashboard that brings real business data to life. I focused on making the data fetching process lightning-fast so users can make informed decisions without waiting for slow loaders.",
         tools: ['React', 'Node.js', 'Express', 'MongoDB'],
         role: 'Full Stack Developer',
         code: 'https://github.com/developer-yasir/companybull-code-hub',

@@ -65,9 +65,9 @@ const Projects = () => {
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-emerald-400 font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Portfolio Showcase</span>
         </motion.div>
-        <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none mb-6">
+        <h2 className="text-4xl md:text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85] uppercase">
           DIGITAL <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500">EXPERIENCES.</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500 italic">EXPERIENCES.</span>
         </h2>
       </div>
 
