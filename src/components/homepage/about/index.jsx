@@ -33,7 +33,7 @@ function AboutSection() {
                   <span className="w-8 h-1 bg-emerald-500 rounded-full" />
                   <span className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-[0.3em]">Discovery Phase</span>
                </div>
-               <h2 className="text-5xl md:text-7xl font-black text-white leading-none tracking-tighter">
+               <h2 className="text-4xl md:text-7xl lg:text-9xl font-black text-white leading-[0.85] tracking-tighter uppercase">
                   THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">IDENTITY</span> <br />
                   BEHIND THE CODE.
                </h2>
@@ -54,12 +54,12 @@ function AboutSection() {
                   <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                      <BsFillLightningChargeFill size={120} className="text-emerald-500" />
                   </div>
-                  <h3 className="text-3xl font-black text-white mb-6">Who am I?</h3>
+                  <h3 className="text-3xl font-black text-white mb-6">The Story So Far</h3>
                   <p className="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mb-8">
-                     I'm a <span className="text-white font-bold">Full Stack Engineer</span> based in Lahore, passionate about building digital products that combine beautiful design with high-performance backends.
+                     I’m based in <span className="text-white font-bold">Lahore</span> and I’ve always been fascinated by how technology can solve everyday problems. I don’t just write code; I look for the best way to build something so that it feels natural and easy for the user.
                   </p>
                   <p className="text-lg text-[var(--text-secondary)] leading-relaxed">
-                     My journey in tech is driven by a simple goal: to transform complex problems into elegant, scalable solutions that actually make a difference for users. I thrive in the MERN stack universe.
+                     Whether it's a small startup tool or a complex platform, I'm dedicated to making it work perfectly using the MERN stack. My goal is to build digital products that people actually enjoy using.
                   </p>
                </motion.div>
 

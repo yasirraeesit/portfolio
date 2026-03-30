@@ -51,12 +51,12 @@ function MobileMenu({ isOpen, onClose }) {
                         initial={{ x: '100%' }}
                         animate={{ x: 0 }}
                         exit={{ x: '100%' }}
-                        transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-                        className="fixed top-0 right-0 h-full w-[280px] bg-[var(--card-bg)] border-l border-[var(--card-border)] shadow-2xl z-[9999] overflow-y-auto"
+                        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                        className="fixed top-0 right-0 h-full w-[300px] bg-[#0d1224]/95 backdrop-blur-xl border-l border-white/10 shadow-2xl z-[9999] overflow-y-auto"
                     >
                         {/* Header */}
-                        <div className="flex items-center justify-between p-6 border-b border-[var(--card-border)]">
-                            <span className="text-[var(--accent-color)] text-xl font-bold">Menu</span>
+                        <div className="flex items-center justify-between p-8 border-b border-white/5">
+                            <span className="text-emerald-400 text-xs font-black uppercase tracking-[0.4em]">Navigation</span>
                             <button
                                 onClick={onClose}
                                 className="p-2 rounded-lg hover:bg-white/5 transition-colors"

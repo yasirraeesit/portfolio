@@ -73,9 +73,9 @@ function Navbar() {
 
   return (
     <>
-      <nav className={`fixed top-0 z-[9999] bg-[var(--nav-bg)] pointer-events-auto border-b transition-all duration-500 ${scrolled
-        ? 'left-0 right-0 border-[var(--card-border)]/40 shadow-lg shadow-black/10 bg-opacity-95'
-        : 'left-[5%] right-[5%] border-[var(--card-border)]/20 rounded-full mt-4 bg-opacity-90'
+      <nav className={`fixed top-0 z-[9999] backdrop-blur-md transition-all duration-500 ${scrolled
+        ? 'left-0 right-0 border-b border-white/10 bg-[#0d1224]/80 shadow-lg shadow-black/20'
+        : 'left-0 right-0 lg:left-[5%] lg:right-[5%] border-b lg:border border-white/5 lg:rounded-full lg:mt-4 bg-[#0d1224]/40'
         }`}>
         <div className="relative flex items-center px-6 py-3">
           <div className="flex flex-1 items-center justify-start">
