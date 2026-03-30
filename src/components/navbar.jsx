@@ -12,52 +12,60 @@ function Navbar() {
   const location = useLocation();
 
   useEffect(() => {
+    let timeoutId = null;
+
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
+      // 1. Immediate update for navbar shrink/expand
+      setScrolled(window.scrollY > 10);
 
-      // Determine active section based on scroll position
-      const sections = ['about', 'experience', 'skills', 'projects', 'education'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 150 && rect.bottom >= 150;
-        }
-        return false;
-      });
+      // 2. Throttled update for active section (prevents layout thrashing stutter)
+      if (timeoutId) return;
 
-      // Alternative method using scroll position
-      let foundActive = current;
-      if (!foundActive) {
-        const scrollPosition = window.scrollY + 150;
-
-        for (const section of sections) {
+      timeoutId = setTimeout(() => {
+        const sections = ['about', 'experience', 'skills', 'projects', 'education'];
+        const current = sections.find(section => {
           const element = document.getElementById(section);
           if (element) {
-            const offsetTop = element.offsetTop;
-            const height = element.offsetHeight;
-            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
-              foundActive = section;
-              break;
+            const rect = element.getBoundingClientRect();
+            // Check if element is in viewport
+            return rect.top <= 150 && rect.bottom >= 150;
+          }
+          return false;
+        });
+
+        let foundActive = current;
+        if (!foundActive) {
+          const scrollPosition = window.scrollY + 150;
+          for (const section of sections) {
+            const element = document.getElementById(section);
+            if (element) {
+              const offsetTop = element.offsetTop;
+              const height = element.offsetHeight;
+              if (scrollPosition >= offsetTop && scrollPosition < offsetTop + height) {
+                foundActive = section;
+                break;
+              }
             }
           }
         }
-      }
-
-      setActiveSection(foundActive || '');
+        setActiveSection(foundActive || '');
+        timeoutId = null;
+      }, 100); // Trigger every 100ms during scroll
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   // Reset active section when route changes
   useEffect(() => {
-    setActiveSection('');
+    if (location.pathname !== '/') {
+      setActiveSection('');
+    }
   }, [location]);
 
   return (
