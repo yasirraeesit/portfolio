@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { projectsData } from '@/utils/data/projects-data';
 import ProjectCard from './project-card';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
 import { HiSearch } from 'react-icons/hi';
+import SectionHeader from '@/components/ui/SectionHeader';
+import Card from '@/components/ui/Card';
 
 const Projects = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');
@@ -54,26 +54,16 @@ const Projects = () => {
   });
 
   return (
-    <div id="projects" className="relative py-24 lg:py-32 bg-[var(--background-color)]">
-      <div className="container mx-auto px-6 mb-20 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-white/5 border border-white/10"
-        >
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span className="text-emerald-400 font-mono text-[10px] font-bold uppercase tracking-[0.2em]">Portfolio Showcase</span>
-        </motion.div>
-        <h2 className="text-4xl md:text-7xl lg:text-9xl font-black text-white tracking-tighter leading-[0.85] uppercase">
-          DIGITAL <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500 italic">EXPERIENCES.</span>
-        </h2>
-      </div>
+    <section id="projects" className="nb-section">
+      <div className="nb-container">
+        <SectionHeader
+          eyebrow="Projects"
+          title="Selected work"
+          subtitle="A small set of projects showing architecture, UI, and backend depth."
+        />
 
-      <div className="max-w-7xl mx-auto px-6">
         {/* Search and Sort Controls */}
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
+        <div className="mt-10 flex flex-col sm:flex-row gap-4 mb-8">
           {/* Search Bar */}
           <div className="flex-1 relative">
             <HiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 w-5 h-5" />
@@ -82,7 +72,7 @@ const Projects = () => {
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-2xl bg-[#111827] border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-emerald-500/50 transition-colors"
+              className="w-full pl-12 pr-4 py-3 rounded-xl bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] text-white placeholder-white/30 nb-focus"
               aria-label="Search projects"
             />
           </div>
@@ -91,7 +81,7 @@ const Projects = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-6 py-3 rounded-2xl bg-[#111827] border border-white/10 text-white focus:outline-none focus:border-emerald-500/50 transition-colors cursor-pointer font-bold text-sm"
+            className="px-6 py-3 rounded-xl bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] text-white nb-focus cursor-pointer font-black text-[11px] uppercase tracking-[0.18em]"
             aria-label="Sort projects"
           >
             <option value="newest">Newest First</option>
@@ -101,14 +91,14 @@ const Projects = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="flex flex-wrap gap-3 mb-10">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setSelectedFilter(category)}
-              className={`px-6 py-2.5 rounded-xl font-bold text-xs uppercase tracking-widest transition-all duration-300 ${selectedFilter === category
-                ? 'bg-emerald-500 text-[#0d1224] shadow-[0_10px_20px_rgba(16,185,129,0.2)] scale-105'
-                : 'bg-white/5 text-white/40 border border-white/10 hover:border-emerald-500/30 hover:text-white'
+              className={`px-5 py-2 rounded-xl font-black text-[10px] uppercase tracking-[0.18em] border-2 transition ${selectedFilter === category
+                ? 'bg-[var(--nb-accent)] text-[var(--nb-bg)] border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)]'
+                : 'bg-[var(--nb-surface)] text-[var(--nb-muted)] border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)] hover:text-[var(--nb-fg)]'
                 }`}
               aria-label={`Filter projects by ${category}`}
               aria-pressed={selectedFilter === category}
@@ -119,57 +109,41 @@ const Projects = () => {
         </div>
 
         {/* Result Count */}
-        <p className="text-[var(--text-secondary)] mb-8 font-mono text-[10px] uppercase tracking-widest">
+        <p className="text-[var(--nb-muted)] mb-6 font-black text-[10px] uppercase tracking-[0.22em]">
           Showing {sortedProjects.length} Result{sortedProjects.length === 1 ? '' : 's'}
         </p>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
-            {sortedProjects.map((project) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4 }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {sortedProjects.map((project) => (
+            <div key={project.id}>
+              <ProjectCard project={project} />
+            </div>
+          ))}
         </div>
 
         {/* No results message */}
         {sortedProjects.length === 0 && (
-          <div className="text-center py-24">
-            <div className="inline-flex p-6 bg-white/5 rounded-full mb-6">
-               <HiSearch size={40} className="text-white/20" />
-            </div>
-            <p className="text-white/40 text-xl font-bold mb-8">
-              No matching digital experiences found.
+          <Card className="mt-10 p-10 text-center">
+            <p className="nb-h3">No matches</p>
+            <p className="nb-body mt-3">
+              Try clearing the search or switching filters.
             </p>
             <button
               onClick={() => {
                 setSearchQuery('');
                 setSelectedFilter('All');
               }}
-              className="px-8 py-4 bg-white/10 hover:bg-white text-white hover:text-[#0d1224] font-black rounded-2xl transition-all uppercase tracking-widest text-xs"
+              className="mt-6 px-6 py-3 bg-[var(--nb-accent)] text-[var(--nb-bg)] border-2 border-[var(--nb-border)] rounded-xl font-black text-[11px] uppercase tracking-[0.18em] shadow-[6px_6px_0_0_var(--nb-shadow)] hover:-translate-y-[1px] transition"
             >
               Reset Filters
             </button>
-          </div>
+          </Card>
         )}
 
         {/* CTA Section */}
         {sortedProjects.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-32 text-center bg-gradient-to-br from-[#1a1f35] to-[#0d1224] border border-white/10 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group"
-          >
+          <div className="mt-32 text-center bg-gradient-to-br from-[#1a1f35] to-[#0d1224] border border-white/10 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group">
             <div className="absolute inset-0 bg-grid opacity-20" />
             <h3 className="text-4xl md:text-6xl font-black text-white mb-6 relative z-10 leading-none">
               HAVE A <br />
@@ -187,10 +161,10 @@ const Projects = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
-          </motion.div>
+          </div>
         )}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -221,8 +221,20 @@ export const skillsImage = (skill) => {
       return fastify;
     case 'express js':
       return expressJS;
+    case 'express.js':
+      return expressJS;
     case 'node js':
       return nodeJS;
+    case 'node.js':
+      return nodeJS;
+    case 'nestjs':
+      return nodeJS;
+    case 'react native':
+      return react;
+    case 'expo':
+      return react;
+    case 'time series db':
+      return postgresql;
     case 'figma':
       return figma;
     case 'flutter':

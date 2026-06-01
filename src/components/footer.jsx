@@ -183,7 +183,7 @@ function Footer() {
           <div className="flex flex-col">
             <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Let's Connect</h4>
             <Link
-              to="/booking"
+              to="/contact"
               className="group flex items-center gap-3 text-emerald-400 font-bold text-lg hover:text-[var(--text-primary)] transition-colors mb-6"
             >
               START A PROJECT
