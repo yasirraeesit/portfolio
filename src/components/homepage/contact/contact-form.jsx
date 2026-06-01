@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
-import confetti from 'canvas-confetti';
+import Button from '@/components/ui/Button';
+import Card from '@/components/ui/Card';
 
 const EMAILJS_SERVICE_ID = 'service_portfolio';
 const EMAILJS_TEMPLATE_ID = 'template_contact';
@@ -46,8 +47,7 @@ const ContactForm = () => {
         window.open(`mailto:yasirraeesit@gmail.com?subject=${subject}&body=${body}`, '_blank');
       }
 
-      confetti({ particleCount: 150, spread: 100, origin: { y: 0.7 }, colors: ['#10b981', '#22d3ee', '#6366f1'] });
-      toast.success("Transmission Received 🚀");
+      toast.success("Message sent");
       setFormData({ name: '', email: '', message: '' });
     } catch {
       toast.error('Transmission Failed');
@@ -57,17 +57,16 @@ const ContactForm = () => {
   };
 
   const inputClass = (field) =>
-    `w-full px-6 py-4 rounded-2xl bg-[#111827] border ${errors[field] ? 'border-red-500' : 'border-white/10'} text-white placeholder-white/20 focus:outline-none focus:border-emerald-500/50 transition-all font-bold text-sm`;
+    `w-full px-5 py-3 rounded-xl bg-[var(--nb-bg)] border-2 ${errors[field] ? 'border-red-500' : 'border-[var(--nb-border)]'} text-white placeholder-white/30 nb-focus font-bold text-sm`;
 
   return (
-    <div className="p-8 md:p-12 rounded-[3rem] bg-[#111827] border border-white/5 relative overflow-hidden group shadow-2xl">
-      <div className="absolute inset-0 bg-grid opacity-10" />
-      <div className="relative z-10">
-        <h3 className="text-2xl md:text-3xl font-black text-white mb-8 tracking-tighter uppercase">Initiate Protocol</h3>
+    <Card className="p-6 md:p-8">
+      <div>
+        <h3 className="nb-h3">Send a message</h3>
         <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
-               <label className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.2em] ml-2">Identity</label>
+               <label className="text-[10px] font-black text-[var(--nb-muted)] uppercase tracking-[0.22em] ml-1">Name</label>
                <input
                  type="text" name="name"
                  value={formData.name} onChange={handleChange}
@@ -77,7 +76,7 @@ const ContactForm = () => {
                />
             </div>
             <div className="space-y-2">
-               <label className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.2em] ml-2">Protocol</label>
+               <label className="text-[10px] font-black text-[var(--nb-muted)] uppercase tracking-[0.22em] ml-1">Email</label>
                <input
                  type="email" name="email"
                  value={formData.email} onChange={handleChange}
@@ -88,7 +87,7 @@ const ContactForm = () => {
             </div>
           </div>
           <div className="space-y-2">
-             <label className="text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.2em] ml-2">Transmission Payload</label>
+             <label className="text-[10px] font-black text-[var(--nb-muted)] uppercase tracking-[0.22em] ml-1">Message</label>
              <textarea
                name="message"
                value={formData.message} onChange={handleChange}
@@ -98,21 +97,12 @@ const ContactForm = () => {
                disabled={isSubmitting}
              />
           </div>
-          <button
-            type="submit" disabled={isSubmitting}
-            className={`w-full group/btn overflow-hidden relative px-8 py-5 rounded-2xl font-black text-xs uppercase tracking-[0.3em] transition-all duration-300 ${isSubmitting
-                ? 'bg-white/5 text-white/20 cursor-not-allowed'
-                : 'bg-white text-[#0d1224] hover:bg-emerald-500 transition-colors'
-              }`}
-          >
-            <span className="relative z-10 flex items-center justify-center gap-3">
-               {isSubmitting ? 'TRANSMITTING...' : 'SEND MESSAGE'}
-               {!isSubmitting && <svg className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>}
-            </span>
-          </button>
+          <Button type="submit" disabled={isSubmitting} size="lg" className="w-full">
+            {isSubmitting ? "Sending..." : "Send"}
+          </Button>
         </form>
       </div>
-    </div>
+    </Card>
   );
 };
 

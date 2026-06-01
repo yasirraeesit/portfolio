@@ -39,7 +39,7 @@ A modern, responsive, and interactive developer portfolio built with React, Vite
 
 1. Clone the repository
 ```bash
-git clone https://github.com/developer-yasir/Portfolio.git
+git clone https://github.com/yasirraeesit/Portfolio.git
 ```
 
 2. Install dependencies
@@ -71,4 +71,4 @@ Edit `src/utils/data/projects-data.js` to add or update your projects.
 This project is open source and available under the [MIT License](LICENSE).
 
 ---
-Made with ❤️ by [Yasir Raees](https://github.com/developer-yasir)
+Made with ❤️ by [Yasir Raees](https://github.com/yasirraeesit)

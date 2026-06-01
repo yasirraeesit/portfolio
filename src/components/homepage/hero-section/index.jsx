@@ -1,173 +1,227 @@
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
 import { personalData } from "../../../utils/data/personal-data";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaMobileAlt } from "react-icons/fa";
+import { HiOutlineCloud } from "react-icons/hi";
 import { HiDownload } from "react-icons/hi";
 import { MdEmail } from "react-icons/md";
+import {
+  MdOutlineAutoGraph,
+  MdOutlineDashboard,
+  MdOutlineIntegrationInstructions,
+  MdOutlinePayment,
+  MdOutlineSecurity,
+  MdOutlineSpeed,
+  MdOutlineStorage,
+  MdOutlineSupportAgent,
+  MdOutlineWebhook,
+} from "react-icons/md";
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import Badge from "@/components/ui/Badge";
+import IconButton from "@/components/ui/IconButton";
+import { projectsData } from "@/utils/data/projects-data";
 
 function HeroSection() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
+  const services = [
+    {
+      label: "SaaS app development",
+      Icon: HiOutlineCloud,
+      gradient: "bg-gradient-to-br from-sky-300 to-indigo-300",
     },
-  };
+    {
+      label: "Dashboards & analytics",
+      Icon: MdOutlineDashboard,
+      gradient: "bg-gradient-to-br from-amber-300 to-orange-300",
+    },
+    {
+      label: "API development",
+      Icon: MdOutlineIntegrationInstructions,
+      gradient: "bg-gradient-to-br from-fuchsia-300 to-pink-300",
+    },
+    {
+      label: "Database design",
+      Icon: MdOutlineStorage,
+      gradient: "bg-gradient-to-br from-emerald-300 to-lime-300",
+    },
+    {
+      label: "Secure auth (JWT/RBAC)",
+      Icon: MdOutlineSecurity,
+      gradient: "bg-gradient-to-br from-teal-300 to-cyan-300",
+    },
+    {
+      label: "Payments (Stripe)",
+      Icon: MdOutlinePayment,
+      gradient: "bg-gradient-to-br from-yellow-300 to-rose-300",
+    },
+    {
+      label: "Real-time (WebSockets)",
+      Icon: MdOutlineWebhook,
+      gradient: "bg-gradient-to-br from-cyan-300 to-blue-300",
+    },
+    {
+      label: "Performance optimization",
+      Icon: MdOutlineSpeed,
+      gradient: "bg-gradient-to-br from-lime-300 to-emerald-300",
+    },
+    {
+      label: "SEO + landing pages",
+      Icon: MdOutlineAutoGraph,
+      gradient: "bg-gradient-to-br from-pink-300 to-rose-300",
+    },
+    {
+      label: "Support tooling",
+      Icon: MdOutlineSupportAgent,
+      gradient: "bg-gradient-to-br from-violet-300 to-fuchsia-300",
+    },
+    {
+      label: "Mobile apps (React Native)",
+      Icon: FaMobileAlt,
+      gradient: "bg-gradient-to-br from-violet-300 to-purple-300",
+    },
+  ];
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: "easeOut" } },
-  };
+  const marqueeServices = [...services, ...services];
+  const featuredProjectsCount = projectsData.filter((p) => p.featured).length;
 
   return (
-    <section className="relative min-h-screen flex items-center bg-[var(--background-color)] pt-32 lg:pt-20 overflow-hidden bg-grid">
-      {/* Decorative background glows */}
-      <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-emerald-500/5" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-cyan-500/5" />
-      </div>
+    <section className="nb-section pt-28 md:pt-32 nb-hero-grid">
+      <div className="nb-container">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="lg:col-span-7">
+            <Badge tone="accent">Open for work</Badge>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center"
-        >
-          {/* Main Hero Content */}
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left">
-            <motion.div 
-               variants={itemVariants} 
-               className="mb-8 flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10"
-            >
-              <span className="flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981]" />
-              <span className="text-emerald-400 text-[10px] font-bold uppercase tracking-[0.2em]">Open to Collaboration</span>
-            </motion.div>
+            <h1 className="nb-h1 mt-8">I build MERN + NestJS products.</h1>
 
-            <motion.h1 
-              variants={itemVariants}
-              className="text-5xl md:text-7xl lg:text-9xl font-black text-white leading-[0.85] tracking-tighter mb-10 uppercase"
-            >
-              BUILDING <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-indigo-500 italic">NEXT-GEN</span> <br />
-              WEB APPS.
-            </motion.h1>
+            <p className="nb-body mt-6 max-w-[46ch]">
+              I&apos;m <span className="text-[var(--nb-fg)] font-black">{personalData.name}</span> — a{" "}
+              {personalData.designation} who enjoys turning ideas into smooth, production-ready products. I build secure,
+              well-structured APIs, analytics dashboards that are easy to understand, and UI that feels fast and
+              polished—focused on clean architecture, performance, and the small UX details that make an app feel
+              finished.
+            </p>
 
-            <motion.p 
-              variants={itemVariants}
-              className="max-w-xl text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed mb-12"
-            >
-              I'm <span className="text-white font-bold">{personalData.name}</span>. 
-              I design and develop high-performance MERN stack applications with a focus on clean architecture and beautiful UI.
-            </motion.p>
+            <div className="mt-8 flex flex-wrap gap-2">
+              {["2+ years", "MERN + NestJS", "PostgreSQL", "React Native (Expo)"].map((t) => (
+                <Badge key={t}>{t}</Badge>
+              ))}
+            </div>
 
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-6 items-center w-full sm:w-auto">
-              <motion.button
-                whileHover={{ scale: 1.05, translateY: -2 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full sm:w-auto relative group overflow-hidden px-10 py-5 bg-gradient-to-r from-emerald-500 via-cyan-400 to-emerald-500 bg-[length:200%_auto] hover:bg-[100%_0] transition-all duration-1000 text-[#0d1224] font-black rounded-2xl flex items-center justify-center gap-3 shadow-[0_20px_40px_rgba(16,185,129,0.3)] hover:shadow-[0_25px_50px_rgba(34,211,238,0.4)]"
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <Button onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })} size="lg">
+                Hire me <MdEmail size={18} />
+              </Button>
+              <Button
+                onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })}
+                variant="ghost"
+                size="lg"
               >
-                {/* Shimmer Effect */}
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-shimmer pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <span className="relative z-10 flex items-center gap-2">
-                  Hire Me <MdEmail size={22} className="group-hover:rotate-[20deg] transition-transform duration-500" />
-                </span>
-                
-                {/* Outer Glow */}
-                <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl bg-cyan-400/20 -z-10 animate-pulse-slow" />
-              </motion.button>
+                View projects
+              </Button>
+              <Button as="a" href={personalData.resume} target="_blank" rel="noreferrer" variant="muted" size="lg">
+                Resume <HiDownload size={18} />
+              </Button>
+            </div>
 
-              <motion.div 
-                whileHover={{ scale: 1.05, translateY: -2 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full sm:w-auto relative p-[1px] rounded-2xl bg-gradient-to-b from-white/20 to-transparent group"
-              >
-                <a
-                  href={personalData.resume}
-                  target="_blank"
-                  className="px-10 py-5 bg-[#111827] hover:bg-[#1a2333] text-white font-bold rounded-2xl transition-all flex items-center justify-center gap-3 border border-white/5 active:scale-95"
-                >
-                  Resume <HiDownload size={22} className="group-hover:translate-y-0.5 transition-transform" />
-                </a>
-              </motion.div>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="mt-12 flex items-center gap-8 border-t border-white/10 pt-8 w-full max-w-xs">
-              <a href={personalData.github} target="_blank" className="text-white/40 hover:text-white transition-colors">
-                <FaGithub size={28} />
-              </a>
-              <a href={personalData.linkedIn} target="_blank" className="text-white/40 hover:text-emerald-400 transition-colors">
-                <FaLinkedin size={28} />
-              </a>
-            </motion.div>
+            <div className="mt-10 flex items-center gap-4">
+              <IconButton as="a" href={personalData.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+                <FaGithub size={18} />
+              </IconButton>
+              <IconButton as="a" href={personalData.linkedIn} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                <FaLinkedin size={18} />
+              </IconButton>
+            </div>
           </div>
 
-          {/* Visual Profile / Identity Card */}
-          <div className="lg:col-span-5 h-full flex items-center justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="relative w-full lg:min-h-[660px] bg-gradient-to-br from-[#1a1f35] to-[#0d1224] rounded-[3rem] border border-white/10 p-1 project-card-glow shadow-2xl"
-            >
-              <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
-              
-              {/* Profile Wrapper */}
-              <div className="relative h-full w-full rounded-[2.8rem] overflow-hidden flex flex-col">
-                <div className="p-8 lg:p-10 pb-6 flex items-center justify-between border-b border-white/5 bg-white/[0.01]">
-                   <div className="flex gap-2">
-                      <div className="w-3 h-3 rounded-full bg-red-500/30" />
-                      <div className="w-3 h-3 rounded-full bg-amber-500/30" />
-                      <div className="w-3 h-3 rounded-full bg-emerald-500/30" />
-                   </div>
-                   <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em]">Identity_Kernel.log</span>
-                </div>
+          <div className="lg:col-span-5 lg:self-center">
+            <Card className="p-6 md:p-8 max-w-xl mx-auto lg:mx-auto">
+              <div className="flex items-start gap-5">
+                <img
+                  src={personalData.profile}
+                  alt={personalData.name}
+                  className="w-24 h-24 rounded-2xl object-cover border-2 border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)]"
+                />
+                <div className="min-w-0">
+                  <p className="nb-h3">{personalData.name}</p>
+                  <p className="mt-2 text-[11px] font-black uppercase tracking-[0.22em] text-[var(--nb-muted)]">
+                    {personalData.designation}
+                  </p>
+                  <p className="mt-4 nb-body">
+                    Building SaaS, dashboards, and secure APIs end-to-end.
+                  </p>
+                  <p className="nb-body mt-4">
+                    {personalData.address} • Available remote
+                  </p>
 
-                <div className="flex-grow flex flex-col items-center justify-center p-10 lg:p-14">
-                  <div className="relative mb-10 group">
-                    <div className="absolute -inset-6 rounded-full bg-gradient-to-r from-emerald-500 to-cyan-500 opacity-20 blur-3xl group-hover:opacity-40 transition-opacity" />
-                    <img
-                      src={personalData.profile}
-                      alt={personalData.name}
-                      className="relative w-48 h-48 lg:w-60 lg:h-60 rounded-full object-cover border-4 border-white/10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
-                    />
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {["Open to full-time", "Contract", "Remote"].map((t) => (
+                      <Badge key={t} className="bg-[var(--nb-bg)] text-[var(--nb-fg)]">
+                        {t}
+                      </Badge>
+                    ))}
                   </div>
 
-                  <h2 className="text-4xl lg:text-5xl font-black text-white text-center mb-3 tracking-tighter uppercase leading-none">{personalData.name}</h2>
-                  <p className="text-emerald-400 font-mono text-xs uppercase tracking-[0.3em] text-center mb-10">MERN Stack Engineer</p>
-
-                  <div className="grid grid-cols-2 gap-4 w-full max-w-sm mt-4">
-                     <div className="p-6 rounded-3xl bg-white/5 border border-white/10 text-center group/stat hover:border-emerald-500/30 transition-colors">
-                        <span className="block text-3xl font-black text-white group-hover:text-emerald-400 transition-colors">2+</span>
-                        <span className="text-[10px] text-white/30 uppercase font-black tracking-widest">Exp. Years</span>
-                     </div>
-                     <div className="p-6 rounded-3xl bg-white/5 border border-white/10 text-center group/stat hover:border-cyan-500/30 transition-colors">
-                        <span className="block text-3xl font-black text-cyan-400 group-hover:scale-110 transition-transform">10+</span>
-                        <span className="text-[10px] text-white/30 uppercase font-black tracking-widest">Projects</span>
-                     </div>
-                  </div>
-                </div>
-                
-                {/* Decorative Footer */}
-                <div className="p-8 bg-white/[0.03] border-t border-white/5 text-center mt-auto">
-                   <div className="flex justify-center gap-3">
-                      {['REACT', 'NODE', 'MONGODB'].map(tech => (
-                         <div key={tech} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-xl text-[8px] text-white/30 font-mono font-bold tracking-[0.2em]">
-                            {tech}
-                         </div>
-                      ))}
-                   </div>
+                  <p className="mt-4 text-[11px] font-black uppercase tracking-[0.18em] text-[var(--nb-muted)]">
+                    PKT (UTC+5) • Fast replies
+                  </p>
                 </div>
               </div>
-            </motion.div>
+
+              <div className="mt-6 grid grid-cols-2 gap-4">
+                <div className="border-2 border-[var(--nb-border)] rounded-2xl shadow-[6px_6px_0_0_var(--nb-shadow)] p-4 bg-[var(--nb-bg)]">
+                  <p className="text-[26px] font-black leading-none">2+</p>
+                  <p className="mt-2 text-[10px] font-black uppercase tracking-[0.22em] text-[var(--nb-muted)]">Years</p>
+                </div>
+                <div className="border-2 border-[var(--nb-border)] rounded-2xl shadow-[6px_6px_0_0_var(--nb-shadow)] p-4 bg-[var(--nb-bg)]">
+                  <p className="text-[26px] font-black leading-none">{projectsData.length}+</p>
+                  <p className="mt-2 text-[10px] font-black uppercase tracking-[0.22em] text-[var(--nb-muted)]">
+                    Projects
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["React", "NestJS", "PostgreSQL", "React Native"].map((t) => (
+                  <Badge key={t}>{t}</Badge>
+                ))}
+              </div>
+            </Card>
           </div>
-        </motion.div>
+        </div>
+
+        <div className="mt-12">
+          <div className="flex items-center justify-between gap-4">
+            <span className="text-[10px] font-black uppercase tracking-[0.22em] text-[var(--nb-muted)]">
+              Services
+            </span>
+          </div>
+
+          <div className="mt-4 relative left-1/2 right-1/2 w-screen -ml-[50vw] -mr-[50vw]">
+            <div className="nb-marquee px-6 md:px-10 pb-3">
+              <div
+                className="nb-marquee-track gap-4"
+                style={{ "--nb-marquee-duration": `${Math.max(22, services.length * 3.2)}s` }}
+              >
+                {marqueeServices.map(({ label, Icon, gradient }, idx) => (
+                  <Card
+                    key={`${label}-${idx}`}
+                    className={[
+                      "shrink-0 w-[280px] p-5",
+                      gradient,
+                      "text-[var(--nb-bg)] border-[var(--nb-border)]",
+                    ].join(" ")}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-xl bg-[color-mix(in_srgb,var(--nb-bg)_12%,transparent)] border-2 border-[var(--nb-border)] shadow-[4px_4px_0_0_var(--nb-shadow)] grid place-items-center">
+                        <Icon size={18} />
+                      </div>
+                      <p className="text-[11px] font-black uppercase tracking-[0.18em] leading-tight">{label}</p>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

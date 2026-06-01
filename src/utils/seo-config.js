@@ -20,7 +20,7 @@ export const seoConfig = {
         "description": "Experienced Full Stack Developer specializing in MERN stack development",
         "url": "https://yasirraees.cv",
         "sameAs": [
-            "https://github.com/developer-yasir",
+            "https://github.com/yasirraeesit",
             "https://linkedin.com/in/yasirraees"
         ],
         "knowsAbout": [

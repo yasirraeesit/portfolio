@@ -1,33 +1,24 @@
-import { FaCode, FaExternalLinkAlt, FaPlay, FaGithub } from 'react-icons/fa';
+import { FaExternalLinkAlt, FaPlay, FaGithub } from 'react-icons/fa';
 import { memo, useState } from 'react';
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
+import Card from '@/components/ui/Card';
+import Badge from '@/components/ui/Badge';
+import Button from '@/components/ui/Button';
 
 function ProjectCard({ project }) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div
-      className="group relative rounded-[2rem] border border-white/10 bg-[#111827] overflow-hidden transition-all duration-500 hover:border-emerald-500/30 flex flex-col h-full shadow-2xl transform-gpu will-change-transform"
+    <Card
+      className="group relative overflow-hidden flex flex-col h-full p-0"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Dynamic Background Glow */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-cyan-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
       {/* Media Section */}
-      <div className="relative aspect-video overflow-hidden bg-black/40 w-full group-hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] transition-all duration-500">
-        <div className="absolute top-4 left-4 flex space-x-1.5 z-20">
-          <div className="h-2.5 w-2.5 rounded-full bg-red-500/50" />
-          <div className="h-2.5 w-2.5 rounded-full bg-amber-500/50" />
-          <div className="h-2.5 w-2.5 rounded-full bg-emerald-500/50" />
-        </div>
+      <div className="relative aspect-video overflow-hidden bg-black/40 w-full border-b-2 border-[var(--nb-border)]">
 
         {project.featured && (
           <div className="absolute top-4 right-4 z-20">
-            <span className="px-3 py-1 text-[9px] font-black uppercase tracking-widest bg-emerald-500 text-[#0d1224] rounded-full shadow-lg">
-               Featured
-            </span>
+            <Badge tone="accent">Featured</Badge>
           </div>
         )}
 
@@ -64,62 +55,49 @@ function ProjectCard({ project }) {
             </div>
           )}
         </div>
-
-        <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity" />
       </div>
 
-      <div className="p-8 flex flex-col flex-grow relative z-10">
+      <div className="p-6 flex flex-col flex-grow">
         <div className="mb-4 flex flex-wrap gap-2">
            {project.tools.slice(0, 3).map((tool, idx) => (
-              <span key={idx} className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[8px] font-mono font-bold text-emerald-400 uppercase tracking-widest">
+              <span key={idx} className="px-2 py-1 bg-[var(--nb-bg)] border-2 border-[var(--nb-border)] rounded-full text-[9px] font-black uppercase tracking-[0.18em]">
                  {tool}
               </span>
            ))}
            {project.tools.length > 3 && (
-              <span className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[8px] font-mono font-bold text-white/40 uppercase tracking-widest">
+              <span className="px-2 py-1 bg-[var(--nb-bg)] border-2 border-[var(--nb-border)] rounded-full text-[9px] font-black uppercase tracking-[0.18em] text-[var(--nb-muted)]">
                  +{project.tools.length - 3}
               </span>
            )}
         </div>
 
-        <h3 className="text-2xl font-black text-white mb-3 group-hover:text-emerald-400 transition-colors leading-none tracking-tight">
+        <h3 className="nb-h3">
           {project.name}
         </h3>
 
-        <p className="text-sm text-[var(--text-secondary)] mb-8 line-clamp-3 leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity">
+        <p className="nb-body mt-3 mb-6 line-clamp-3">
           {project.description}
         </p>
 
-        <div className="flex items-center gap-3 mt-auto pt-4 border-t border-white/5">
-          <a
-            href={project.code || "#"}
-            target="_blank" rel="noreferrer"
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white bg-white/5 border border-white/10 rounded-xl hover:bg-white/10 transition-all duration-300"
-          >
-            <FaGithub size={14} />
-            <span>Code</span>
-          </a>
-
-          {project.demo ? (
-            <a
-              href={project.demo}
-              target="_blank" rel="noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-[#0d1224] bg-emerald-500 rounded-xl hover:bg-emerald-400 transition-all duration-300 shadow-xl shadow-emerald-500/10"
-            >
-              <FaExternalLinkAlt size={12} />
-              <span>Demo</span>
-            </a>
+        <div className="mt-auto pt-6 border-t-2 border-[var(--nb-border)] flex items-center gap-3">
+          {project.code ? (
+            <Button as="a" href={project.code} target="_blank" rel="noreferrer" variant="ghost" className="flex-1">
+              Code <FaGithub size={14} />
+            </Button>
           ) : (
-            <div
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-3 text-[10px] font-black uppercase tracking-[0.2em] text-white/20 bg-white/5 border border-white/5 rounded-xl cursor-not-allowed"
-            >
-              <FaExternalLinkAlt size={12} />
-              <span>Layer</span>
+            <div className="flex-1 flex items-center justify-center">
+              <Badge tone="warning">Private</Badge>
             </div>
           )}
+
+          {project.demo ? (
+            <Button as="a" href={project.demo} target="_blank" rel="noreferrer" className="flex-1">
+              Demo <FaExternalLinkAlt size={12} />
+            </Button>
+          ) : null}
         </div>
       </div>
-    </div>
+    </Card>
   );
 }
 

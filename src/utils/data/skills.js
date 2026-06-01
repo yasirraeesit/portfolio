@@ -2,26 +2,30 @@ export const skillsData = {
   Frontend: [
     'HTML',
     'CSS',
-    'Javascript',
+    'JavaScript',
     'React',
-    'Next JS',
     'Tailwind',
-    'Bootstrap',
-    'Redux'
+    'Bootstrap'
   ],
   Backend: [
-    'Node JS',
-    'Express JS',
+    'Node.js',
+    'Express.js',
+    'NestJS'
+  ],
+  Mobile: [
+    'React Native',
+    'Expo'
+  ],
+  Databases: [
     'MongoDB',
     'MySQL',
-    'Dot.Net'
+    'PostgreSQL',
+    'Time Series DB'
   ],
   Tools: [
     'Git',
     'GitHub',
-    'Figma',
-    'Wordpress',
-    'ViteJS',
-    'Docker'
+    'Docker',
+    'WordPress'
   ]
 };

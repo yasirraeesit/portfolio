@@ -1,9 +1,6 @@
-// eslint-disable-next-line no-unused-vars
-import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { HiMenuAlt3 } from 'react-icons/hi';
-import ThemeToggle from './helper/theme-toggle';
 import MobileMenu from './helper/mobile-menu';
 
 function Navbar() {
@@ -21,7 +18,7 @@ function Navbar() {
       if (timeoutId) return;
 
       timeoutId = setTimeout(() => {
-        const sections = ['about', 'experience', 'skills', 'projects', 'github', 'services', 'education', 'blogs'];
+        const sections = ['about', 'experience', 'skills', 'projects', 'github', 'services', 'education', 'contact'];
         const current = sections.find(section => {
           const element = document.getElementById(section);
           if (element) {
@@ -68,7 +65,7 @@ function Navbar() {
     { label: 'GITHUB', href: '/#github', id: 'github' },
     { label: 'SERVICES', href: '/#services', id: 'services' },
     { label: 'EDUCATION', href: '/#education', id: 'education' },
-    { label: 'BLOG', href: '/#blogs', id: 'blogs' },
+    { label: 'CONTACT', href: '/#contact', id: 'contact' },
   ];
 
   return (
@@ -110,8 +107,6 @@ function Navbar() {
             >
               <HiMenuAlt3 className="text-[var(--text-primary)] w-6 h-6" />
             </button>
-
-            <ThemeToggle />
 
             <Link
                className="relative group overflow-hidden hidden sm:flex items-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-5 py-2.5 text-xs font-black text-[#0d1224] transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_15px_rgba(16,185,129,0.2)]"
