@@ -26,57 +26,68 @@ function HeroSection() {
     {
       label: "SaaS app development",
       Icon: HiOutlineCloud,
-      gradient: "bg-gradient-to-br from-sky-300 to-indigo-300",
+      gradient: "linear-gradient(135deg, #bae6fd 0%, #c7d2fe 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Dashboards & analytics",
       Icon: MdOutlineDashboard,
-      gradient: "bg-gradient-to-br from-amber-300 to-orange-300",
+      gradient: "linear-gradient(135deg, #fcd34d 0%, #fdba74 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "API development",
       Icon: MdOutlineIntegrationInstructions,
-      gradient: "bg-gradient-to-br from-fuchsia-300 to-pink-300",
+      gradient: "linear-gradient(135deg, #f0abfc 0%, #f9a8d4 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Database design",
       Icon: MdOutlineStorage,
-      gradient: "bg-gradient-to-br from-emerald-300 to-lime-300",
+      gradient: "linear-gradient(135deg, #6ee7b7 0%, #bef264 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Secure auth (JWT/RBAC)",
       Icon: MdOutlineSecurity,
-      gradient: "bg-gradient-to-br from-teal-300 to-cyan-300",
+      gradient: "linear-gradient(135deg, #5eead4 0%, #67e8f9 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Payments (Stripe)",
       Icon: MdOutlinePayment,
-      gradient: "bg-gradient-to-br from-yellow-300 to-rose-300",
+      gradient: "linear-gradient(135deg, #fde047 0%, #fda4af 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Real-time (WebSockets)",
       Icon: MdOutlineWebhook,
-      gradient: "bg-gradient-to-br from-cyan-300 to-blue-300",
+      gradient: "linear-gradient(135deg, #67e8f9 0%, #93c5fd 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Performance optimization",
       Icon: MdOutlineSpeed,
-      gradient: "bg-gradient-to-br from-lime-300 to-emerald-300",
+      gradient: "linear-gradient(135deg, #bef264 0%, #6ee7b7 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "SEO + landing pages",
       Icon: MdOutlineAutoGraph,
-      gradient: "bg-gradient-to-br from-pink-300 to-rose-300",
+      gradient: "linear-gradient(135deg, #f9a8d4 0%, #fda4af 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Support tooling",
       Icon: MdOutlineSupportAgent,
-      gradient: "bg-gradient-to-br from-violet-300 to-fuchsia-300",
+      gradient: "linear-gradient(135deg, #c4b5fd 0%, #f0abfc 100%)",
+      text: "text-[#0b1020]",
     },
     {
       label: "Mobile apps (React Native)",
       Icon: FaMobileAlt,
-      gradient: "bg-gradient-to-br from-violet-300 to-purple-300",
+      gradient: "linear-gradient(135deg, #c4b5fd 0%, #d8b4fe 100%)",
+      text: "text-[#0b1020]",
     },
   ];
 
@@ -222,20 +233,20 @@ function HeroSection() {
                 className="nb-marquee-track gap-4"
                 style={{ "--nb-marquee-duration": `${Math.max(22, services.length * 3.2)}s` }}
               >
-                {marqueeServices.map(({ label, Icon, gradient }, idx) => (
+                {marqueeServices.map(({ label, Icon, gradient, text }, idx) => (
                   <Card
                     key={`${label}-${idx}`}
                     className={[
                       "shrink-0 w-[280px] p-5",
-                      gradient,
-                      "text-[var(--nb-bg)] border-[var(--nb-border)]",
+                      "border-[var(--nb-border)]",
                     ].join(" ")}
+                    style={{ backgroundImage: gradient, color: "var(--nb-bg)" }}
                   >
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-xl bg-[color-mix(in_srgb,var(--nb-bg)_12%,transparent)] border-2 border-[var(--nb-border)] shadow-[4px_4px_0_0_var(--nb-shadow)] grid place-items-center">
                         <Icon size={18} />
                       </div>
-                      <p className="text-[11px] font-black uppercase tracking-[0.18em] leading-tight">{label}</p>
+                      <p className={`text-[11px] font-black uppercase tracking-[0.18em] leading-tight ${text}`}>{label}</p>
                     </div>
                   </Card>
                 ))}
