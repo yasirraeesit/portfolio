@@ -27,9 +27,9 @@ function Footer() {
 
   // Social media links array
   const socialLinks = [
-    { name: 'GitHub', icon: <FaGithub />, url: contactsData.github, color: 'hover:text-gray-300' },
-    { name: 'LinkedIn', icon: <FaLinkedin />, url: contactsData.linkedIn, color: 'hover:text-blue-400' },
-    { name: 'Email', icon: <FaEnvelope />, url: `mailto:${contactsData.email}`, color: 'hover:text-red-400' },
+    { name: 'GitHub', icon: FaGithub, url: contactsData.github, style: { color: '#181717' } },
+    { name: 'LinkedIn', icon: FaLinkedin, url: contactsData.linkedIn, style: { color: '#0A66C2' } },
+    { name: 'Email', icon: FaEnvelope, url: `mailto:${contactsData.email}`, style: { color: '#e11d48' } },
   ];
 
   // Remove empty social links
@@ -199,9 +199,10 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className={`text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300 ${link.color}`}
+                  className="transition-colors duration-300 hover:opacity-80"
+                  style={link.style}
                 >
-                  {link.icon}
+                  <link.icon />
                 </a>
               ))}
             </div>
