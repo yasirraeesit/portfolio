@@ -38,7 +38,7 @@ const servicesData = [
 
 function Services() {
   return (
-    <section id="services" className="nb-section">
+    <section id="services" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="Services"
@@ -53,9 +53,10 @@ function Services() {
                key={index}
                className="group relative"
              >
-                <Card className="h-full p-6 md:p-8 flex flex-col">
+                <Card className="h-full p-6 md:p-8 flex flex-col overflow-hidden relative">
+                  <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.color}`} />
                   <div className="flex items-center justify-between gap-4">
-                    <div className="text-[var(--nb-bg)] bg-[var(--nb-accent)] border-2 border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)] rounded-2xl p-3">
+                    <div className={`text-[var(--nb-bg)] bg-gradient-to-br ${service.color} border-2 border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)] rounded-2xl p-3`}>
                       {service.icon}
                     </div>
                     <span className="text-[10px] font-black uppercase tracking-[0.22em] text-[var(--nb-muted)]">

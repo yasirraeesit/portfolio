@@ -8,7 +8,7 @@ const Education = () => {
   const education = educations[0]; // Focus on the single entry
 
   return (
-    <section id="education" className="nb-section">
+    <section id="education" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="Education"
@@ -18,7 +18,8 @@ const Education = () => {
         />
 
         <div className="mt-10 max-w-5xl mx-auto">
-          <Card className="p-6 md:p-10">
+          <Card className="p-6 md:p-10 overflow-hidden relative">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[var(--nb-accent)] via-cyan-400 to-[var(--nb-warn)]" />
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
               <div className="md:col-span-5">
                 <div className="inline-flex items-center gap-3 bg-[var(--nb-accent)] text-[var(--nb-bg)] border-2 border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)] rounded-2xl px-4 py-3">

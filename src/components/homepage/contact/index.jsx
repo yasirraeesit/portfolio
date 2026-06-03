@@ -13,15 +13,15 @@ import IconButton from '@/components/ui/IconButton';
 
 function ContactSection() {
   const socials = [
-    { icon: <IoLogoGithub />, url: personalData.github, label: "GitHub" },
-    { icon: <BiLogoLinkedin />, url: personalData.linkedIn, label: "LinkedIn" },
-    { icon: <FaXTwitter />, url: personalData.twitter, label: "Twitter/X" },
-    { icon: <FaStackOverflow />, url: personalData.stackOverflow, label: "StackOverflow" },
-    { icon: <FaFacebook />, url: personalData.facebook, label: "Facebook" },
+    { icon: IoLogoGithub, url: personalData.github, label: "GitHub", style: { color: "#FFFFFF" } },
+    { icon: BiLogoLinkedin, url: personalData.linkedIn, label: "LinkedIn", style: { color: "#0A66C2" } },
+    { icon: FaXTwitter, url: personalData.twitter, label: "Twitter/X", style: { color: "#FFFFFF" } },
+    { icon: FaStackOverflow, url: personalData.stackOverflow, label: "StackOverflow", style: { color: "#F48024" } },
+    { icon: FaFacebook, url: personalData.facebook, label: "Facebook", style: { color: "#1877F2" } },
   ].filter((s) => Boolean(s.url));
 
   return (
-    <section id="contact" className="nb-section">
+    <section id="contact" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="Contact"
@@ -35,7 +35,8 @@ function ContactSection() {
           </div>
 
           <div className="lg:col-span-5 space-y-6">
-            <Card className="p-6 md:p-8">
+            <Card className="p-6 md:p-8 overflow-hidden relative">
+              <div className="absolute right-0 top-0 h-24 w-24 bg-[radial-gradient(circle,rgba(52,211,153,0.18),transparent_70%)]" />
               <h3 className="nb-h3">Direct</h3>
               <div className="mt-5 space-y-4">
                 {[
@@ -75,8 +76,9 @@ function ContactSection() {
                       rel="noreferrer"
                       aria-label={s.label}
                       title={s.label}
+                      style={s.style}
                     >
-                      {s.icon}
+                      <s.icon />
                     </IconButton>
                   ))}
                 </div>

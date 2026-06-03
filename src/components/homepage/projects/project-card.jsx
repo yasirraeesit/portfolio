@@ -14,7 +14,7 @@ function ProjectCard({ project }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Media Section */}
-      <div className="relative aspect-video overflow-hidden bg-black/40 w-full border-b-2 border-[var(--nb-border)]">
+      <div className="relative aspect-video overflow-hidden bg-[linear-gradient(135deg,color-mix(in_srgb,var(--nb-surface)_82%,var(--nb-accent)_18%)_0%,var(--nb-bg)_100%)] w-full border-b-2 border-[var(--nb-border)]">
 
         {project.featured && (
           <div className="absolute top-4 right-4 z-20">
@@ -45,11 +45,11 @@ function ProjectCard({ project }) {
             <img
               src={project.image}
               alt={project.name}
-              className="w-full h-full object-cover transition-all duration-700 grayscale group-hover:grayscale-0"
+              className="w-full h-full object-cover transition-all duration-700 grayscale-[0.3] group-hover:grayscale-0"
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-[#1a1f35]">
-              <span className="text-emerald-500/20 font-black text-6xl uppercase tracking-[0.5em] group-hover:scale-125 transition-transform">
+            <div className="w-full h-full flex items-center justify-center bg-[linear-gradient(135deg,color-mix(in_srgb,var(--nb-surface)_78%,var(--nb-accent)_22%)_0%,var(--nb-bg)_100%)]">
+              <span className="text-[var(--nb-accent)]/25 font-black text-6xl uppercase tracking-[0.5em] group-hover:scale-125 transition-transform">
                 {project.name.charAt(0)}
               </span>
             </div>
@@ -85,10 +85,10 @@ function ProjectCard({ project }) {
               Code <FaGithub size={14} />
             </Button>
           ) : (
-            <div className="flex-1 flex items-center justify-center">
-              <Badge tone="warning">Private</Badge>
-            </div>
-          )}
+              <div className="flex-1 flex items-center justify-center">
+                <Badge tone="warning">Private</Badge>
+              </div>
+            )}
 
           {project.demo ? (
             <Button as="a" href={project.demo} target="_blank" rel="noreferrer" className="flex-1">

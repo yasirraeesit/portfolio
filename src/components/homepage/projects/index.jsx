@@ -54,7 +54,7 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className="nb-section">
+    <section id="projects" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="Projects"
@@ -66,13 +66,13 @@ const Projects = () => {
         <div className="mt-10 flex flex-col sm:flex-row gap-4 mb-8">
           {/* Search Bar */}
           <div className="flex-1 relative">
-            <HiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 w-5 h-5" />
+            <HiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--nb-muted)] w-5 h-5" />
             <input
               type="text"
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-xl bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] text-white placeholder-white/30 nb-focus"
+              className="w-full pl-12 pr-4 py-3 rounded-xl bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] text-[var(--nb-fg)] placeholder-[var(--nb-muted)] nb-focus shadow-[6px_6px_0_0_var(--nb-shadow)]"
               aria-label="Search projects"
             />
           </div>
@@ -81,7 +81,7 @@ const Projects = () => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-6 py-3 rounded-xl bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] text-white nb-focus cursor-pointer font-black text-[11px] uppercase tracking-[0.18em]"
+            className="px-6 py-3 rounded-xl bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] text-[var(--nb-fg)] nb-focus cursor-pointer font-black text-[11px] uppercase tracking-[0.18em] shadow-[6px_6px_0_0_var(--nb-shadow)]"
             aria-label="Sort projects"
           >
             <option value="newest">Newest First</option>
@@ -143,18 +143,25 @@ const Projects = () => {
 
         {/* CTA Section */}
         {sortedProjects.length > 0 && (
-          <div className="mt-32 text-center bg-gradient-to-br from-[#1a1f35] to-[#0d1224] border border-white/10 rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group">
+          <div className="mt-24 text-center rounded-[3rem] p-12 lg:p-20 relative overflow-hidden group border-2 border-[var(--nb-border)] shadow-[10px_10px_0_0_var(--nb-shadow)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--nb-surface)_88%,var(--nb-accent)_12%)_0%,var(--nb-bg)_100%)]">
             <div className="absolute inset-0 bg-grid opacity-20" />
-            <h3 className="text-4xl md:text-6xl font-black text-white mb-6 relative z-10 leading-none">
+            <div className="relative z-10 flex flex-wrap justify-center gap-2 mb-6">
+              {["Architecture", "UI polish", "Production ready"].map((tag) => (
+                <span key={tag} className="px-3 py-1 rounded-full border-2 border-[var(--nb-border)] bg-[var(--nb-bg)] text-[10px] font-black uppercase tracking-[0.18em] shadow-[4px_4px_0_0_var(--nb-shadow)]">
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h3 className="text-4xl md:text-6xl font-black text-[var(--nb-fg)] mb-6 relative z-10 leading-none">
               HAVE A <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">VISION?</span>
             </h3>
-            <p className="text-[var(--text-secondary)] text-xl mb-12 max-w-2xl mx-auto relative z-10">
+            <p className="text-[var(--nb-muted)] text-xl mb-12 max-w-2xl mx-auto relative z-10">
               I'm always looking for ambitious projects to push the boundaries of what's possible on the web.
             </p>
             <button
               onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-10 py-5 bg-emerald-500 hover:bg-emerald-600 text-[#0d1224] font-black rounded-2xl transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-3 relative z-10 shadow-[0_20px_40px_rgba(16,185,129,0.2)]"
+              className="group px-10 py-5 bg-[var(--nb-accent)] hover:brightness-110 text-[var(--nb-bg)] font-black rounded-2xl transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-3 relative z-10 shadow-[0_20px_40px_rgba(16,185,129,0.2)] border-2 border-[var(--nb-border)]"
             >
               START A CONVERSATION
               <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

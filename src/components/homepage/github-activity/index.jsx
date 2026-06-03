@@ -10,7 +10,7 @@ function GitHubActivity() {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <section id="github" className="nb-section">
+    <section id="github" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="GitHub"
@@ -18,7 +18,8 @@ function GitHubActivity() {
           subtitle="A quick view of recent consistency and open-source contributions."
         />
 
-        <Card className="mt-10 p-6 md:p-8">
+        <Card className="mt-10 p-6 md:p-8 overflow-hidden relative">
+          <div className="absolute right-0 top-0 h-28 w-28 bg-[radial-gradient(circle,rgba(52,211,153,0.18),transparent_68%)]" />
           {hasError ? (
             <div>
               <p className="nb-h3">Calendar unavailable</p>

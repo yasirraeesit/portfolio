@@ -19,7 +19,7 @@ function Skills() {
   };
 
   return (
-    <section id="skills" className="nb-section">
+    <section id="skills" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="Skills"
@@ -33,23 +33,23 @@ function Skills() {
           return (
             <div
               key={category}
-              className="mb-24 last:mb-0"
+              className="mb-14 last:mb-0"
             >
-              <div className="flex items-center gap-6 mb-12">
-                <h3 className={`nb-h3 ${styles.text}`}>
+              <div className="flex items-center gap-4 mb-6">
+                <span className={`inline-flex items-center px-3 py-1 rounded-full border-2 border-[var(--nb-border)] shadow-[4px_4px_0_0_var(--nb-shadow)] ${styles.bg} ${styles.text}`}>
                   {category}
-                </h3>
-                <div className={`h-px flex-grow ${styles.bg.replace('bg-', 'bg-')}`} style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} />
+                </span>
+                <div className="h-px flex-grow bg-gradient-to-r from-[var(--nb-border)] via-[var(--nb-accent)] to-transparent" />
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 md:gap-8">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6">
                 {skills.map((skill) => (
                   <div
                     key={skill}
-                    className="group"
+                    className={`group rounded-2xl border-2 border-[var(--nb-border)] shadow-[6px_6px_0_0_var(--nb-shadow)] ${styles.bg}`}
                   >
-                    <Card className="p-5 h-32 md:h-36 flex flex-col items-center justify-center text-center">
-                      <div className="w-12 h-12 mb-4">
+                    <Card className="p-5 h-32 md:h-36 flex flex-col items-center justify-center text-center border-none shadow-none bg-transparent">
+                      <div className="w-12 h-12 mb-4 p-2 rounded-2xl border-2 border-[var(--nb-border)] bg-[var(--nb-bg)] shadow-[4px_4px_0_0_var(--nb-shadow)]">
                         <img src={skillsImage(skill)} alt={skill} className="w-full h-full object-contain" />
                       </div>
                       <span className="text-[11px] font-black uppercase tracking-[0.18em]">{skill}</span>

@@ -57,7 +57,7 @@ const ContactForm = () => {
   };
 
   const inputClass = (field) =>
-    `w-full px-5 py-3 rounded-xl bg-[var(--nb-bg)] border-2 ${errors[field] ? 'border-red-500' : 'border-[var(--nb-border)]'} text-white placeholder-white/30 nb-focus font-bold text-sm`;
+    `w-full px-5 py-3 rounded-xl bg-[var(--nb-bg)] border-2 ${errors[field] ? 'border-red-500' : 'border-[var(--nb-border)]'} text-[var(--nb-fg)] placeholder-[var(--nb-muted)] nb-focus font-bold text-sm shadow-[4px_4px_0_0_var(--nb-shadow)]`;
 
   return (
     <Card className="p-6 md:p-8">

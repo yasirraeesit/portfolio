@@ -44,7 +44,7 @@ function ServicesPage() {
           <div className="mb-12 md:mb-16">
             <Link
                to="/"
-               className="inline-flex items-center gap-2 text-white/50 hover:text-emerald-400 transition-colors group font-mono text-[10px] tracking-[0.2em] uppercase mb-12"
+               className="inline-flex items-center gap-2 text-[var(--nb-muted)] hover:text-[var(--nb-accent)] transition-colors group font-mono text-[10px] tracking-[0.2em] uppercase mb-12"
             >
                <FaArrowLeft className="group-hover:-translate-x-1 transition-transform" />
                <span>Return to Home</span>
@@ -53,8 +53,8 @@ function ServicesPage() {
             <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
                <div className="max-w-4xl">
                   <div className="flex items-center gap-2 mb-6">
-                    <span className="w-12 h-1 bg-emerald-500 rounded-full" />
-                    <span className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-[0.4em]">Expertise Catalog</span>
+                    <span className="w-12 h-1 bg-[var(--nb-accent)] rounded-full" />
+                    <span className="text-[var(--nb-accent)] font-mono text-xs font-bold uppercase tracking-[0.4em]">Expertise Catalog</span>
                   </div>
                   <h1 className="nb-h1">Custom solutions for your ideas</h1>
                </div>
@@ -70,12 +70,13 @@ function ServicesPage() {
                 key={index}
                 className="group relative h-full"
               >
-                <div className="h-full p-8 rounded-[2rem] bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] shadow-[8px_8px_0_0_var(--nb-shadow)] flex flex-col items-start">
+                <div className="h-full p-8 rounded-[2rem] bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] shadow-[8px_8px_0_0_var(--nb-shadow)] flex flex-col items-start relative overflow-hidden">
+                   <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${service.color}`} />
                    <div className="flex items-center justify-between w-full mb-12">
                       <div className={`p-6 rounded-[2rem] bg-gradient-to-br ${service.color} text-[#0d1224] shadow-[0_20px_40px_rgba(0,0,0,0.3)] group-hover:scale-105 transition-transform duration-500`}>
                         {service.icon}
                       </div>
-                      <span className="px-4 py-2 bg-white/5 border border-white/10 rounded-full text-[10px] font-mono font-bold text-white/30 uppercase tracking-[0.2em]">{service.tag}</span>
+                      <span className="px-4 py-2 bg-[var(--nb-bg)] border-2 border-[var(--nb-border)] rounded-full text-[10px] font-mono font-bold text-[var(--nb-muted)] uppercase tracking-[0.2em] shadow-[4px_4px_0_0_var(--nb-shadow)]">{service.tag}</span>
                    </div>
 
                    <h3 className="nb-h3 mt-2">
@@ -86,22 +87,23 @@ function ServicesPage() {
                       {service.description}
                    </p>
 
-                   <div className="mt-auto w-full pt-8 border-t border-white/5 flex items-center justify-between">
+                   <div className="mt-auto w-full pt-8 border-t border-[var(--nb-border)] flex items-center justify-between">
                       <Link
                         to="/contact"
-                        className="flex items-center gap-3 text-white font-black text-xs uppercase tracking-[0.3em] group/btn transition-all"
+                        className="flex items-center gap-3 text-[var(--nb-fg)] font-black text-xs uppercase tracking-[0.3em] group/btn transition-all"
                       >
                          <span>Start a Project</span>
-                         <FaArrowRight className="group-hover/btn:translate-x-2 transition-transform text-emerald-500" />
+                         <FaArrowRight className="group-hover/btn:translate-x-2 transition-transform text-[var(--nb-accent)]" />
                       </Link>
-                      <div className="text-[10px] font-mono font-bold text-white/10 group-hover:text-white/20 transition-colors uppercase">PRO-LVL-0{index + 1}</div>
+                      <div className="text-[10px] font-mono font-bold text-[var(--nb-muted)] group-hover:text-[var(--nb-fg)] transition-colors uppercase">PRO-LVL-0{index + 1}</div>
                    </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-14 p-10 rounded-[2rem] bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] shadow-[10px_10px_0_0_var(--nb-shadow)]">
+          <div className="mt-14 p-10 rounded-[2rem] bg-[var(--nb-surface)] border-2 border-[var(--nb-border)] shadow-[10px_10px_0_0_var(--nb-shadow)] relative overflow-hidden">
+             <div className="absolute right-0 top-0 h-28 w-28 bg-[radial-gradient(circle,rgba(52,211,153,0.16),transparent_70%)]" />
              <div className="max-w-4xl">
                 <h2 className="nb-h2">Ready to start?</h2>
                 <p className="nb-body mt-4 mb-8">Let’s align on goals and build the next version of your product.</p>

@@ -107,6 +107,55 @@ h4 {
     @apply relative py-16 md:py-20;
   }
 
+  .nb-section-shell {
+    position: relative;
+    isolation: isolate;
+    background:
+      radial-gradient(circle at top left, color-mix(in srgb, var(--nb-accent) 12%, transparent) 0, transparent 32%),
+      radial-gradient(circle at top right, color-mix(in srgb, var(--nb-warn) 10%, transparent) 0, transparent 28%),
+      linear-gradient(180deg, color-mix(in srgb, var(--nb-bg) 96%, var(--nb-surface) 4%) 0%, var(--nb-bg) 100%);
+  }
+
+  .nb-section-shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: 44px 44px;
+    background-image: linear-gradient(
+        to right,
+        color-mix(in srgb, var(--nb-fg) 4%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--nb-fg) 4%, transparent) 1px,
+        transparent 1px
+      );
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: -2;
+  }
+
+  .nb-section-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 0%, color-mix(in srgb, var(--nb-accent) 16%, transparent) 0, transparent 24%),
+      radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--nb-warn) 14%, transparent) 0, transparent 22%);
+    opacity: 0.55;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .nb-section-panel {
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--nb-surface) 96%, var(--nb-accent) 4%) 0%,
+      var(--nb-surface) 100%
+    );
+  }
+
   .nb-h1 {
     font-size: clamp(2.75rem, 6vw, 4.75rem);
     line-height: 0.95;

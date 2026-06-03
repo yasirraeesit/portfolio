@@ -1,7 +1,6 @@
 // @flow strict
 import { experiences } from "@/utils/data/experience";
 import { personalData } from "@/utils/data/personal-data";
-import { BsBriefcaseFill } from "react-icons/bs";
 import { HiArrowDown } from "react-icons/hi";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Card from "@/components/ui/Card";
@@ -9,7 +8,7 @@ import Button from "@/components/ui/Button";
 
 function Experience() {
   return (
-    <section id="experience" className="nb-section">
+    <section id="experience" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
           eyebrow="Experience"
@@ -19,7 +18,8 @@ function Experience() {
 
         <div className="mt-10 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {experiences.map((experience) => (
-            <Card key={experience.id} className="p-6 md:p-8">
+            <Card key={experience.id} className="p-6 md:p-8 relative overflow-hidden">
+              <div className="absolute left-0 top-0 h-full w-2 bg-gradient-to-b from-[var(--nb-accent)] via-cyan-400 to-[var(--nb-warn)]" />
               <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0">
                   <h3 className="nb-h3">{experience.title}</h3>

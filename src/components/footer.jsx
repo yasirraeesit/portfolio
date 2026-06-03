@@ -74,27 +74,27 @@ function Footer() {
                 <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Navigation</h4>
                 <ul className="space-y-4">
                   <li>
-                    <a href="/#about" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                    <a href="/#about" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                       About
                     </a>
                   </li>
                   <li>
-                    <a href="/#experience" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                    <a href="/#experience" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                       Experience
                     </a>
                   </li>
                   <li>
-                    <a href="/#skills" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                    <a href="/#skills" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                       Skills
                     </a>
                   </li>
                   <li>
-                    <a href="/#projects" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                    <a href="/#projects" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                       Projects
                     </a>
                   </li>
                   <li>
-                    <a href="/services" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                    <a href="/services" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                       Services
                     </a>
                   </li>
@@ -106,12 +106,12 @@ function Footer() {
                 <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Connect</h4>
                 <ul className="space-y-4">
                   <li>
-                    <a href={`mailto:${contactsData.email}`} className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2">
+                    <a href={`mailto:${contactsData.email}`} className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300 flex items-center gap-2">
                       <FaEnvelope className="text-sm" /> {contactsData.email}
                     </a>
                   </li>
                   <li>
-                    <a href={`tel:${contactsData.phone}`} className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2">
+                    <a href={`tel:${contactsData.phone}`} className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300 flex items-center gap-2">
                       <span className="text-sm">{contactsData.phone}</span>
                     </a>
                   </li>
@@ -130,27 +130,27 @@ function Footer() {
             <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Navigation</h4>
             <ul className="space-y-4">
               <li>
-                <a href="/#about" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                <a href="/#about" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                   About
                 </a>
               </li>
               <li>
-                <a href="/#experience" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                <a href="/#experience" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                   Experience
                 </a>
               </li>
               <li>
-                <a href="/#skills" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                <a href="/#skills" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                   Skills
                 </a>
               </li>
               <li>
-                <a href="/#projects" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                <a href="/#projects" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                   Projects
                 </a>
               </li>
               <li>
-                <a href="/services" className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300">
+                <a href="/services" className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300">
                   Services
                 </a>
               </li>
@@ -162,12 +162,12 @@ function Footer() {
             <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Connect</h4>
             <ul className="space-y-4">
               <li>
-                <a href={`mailto:${contactsData.email}`} className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2">
+                <a href={`mailto:${contactsData.email}`} className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300 flex items-center gap-2">
                   <FaEnvelope className="text-sm" /> {contactsData.email}
                 </a>
               </li>
               <li>
-                <a href={`tel:${contactsData.phone}`} className="text-[var(--text-secondary)] hover:text-emerald-400 transition-colors duration-300 flex items-center gap-2">
+                <a href={`tel:${contactsData.phone}`} className="text-[var(--text-secondary)] hover:text-[var(--nb-accent)] transition-colors duration-300 flex items-center gap-2">
                   <span className="text-sm">{contactsData.phone}</span>
                 </a>
               </li>
@@ -184,7 +184,7 @@ function Footer() {
             <h4 className="text-[var(--text-primary)] font-bold mb-6 uppercase tracking-widest text-sm">Let's Connect</h4>
             <Link
               to="/contact"
-              className="group flex items-center gap-3 text-emerald-400 font-bold text-lg hover:text-[var(--text-primary)] transition-colors mb-6"
+              className="group flex items-center gap-3 text-[var(--nb-accent)] font-bold text-lg hover:text-[var(--text-primary)] transition-colors mb-6"
             >
               START A PROJECT
               <FaArrowRight className="group-hover:translate-x-2 transition-transform duration-300" />
