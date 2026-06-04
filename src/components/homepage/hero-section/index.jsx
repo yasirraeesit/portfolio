@@ -115,7 +115,7 @@ function HeroSection() {
           <div className="lg:col-span-7">
             <Badge tone="accent">Open for work</Badge>
 
-            <h1 className="nb-h1 mt-8">I build MERN + NestJS products.</h1>
+            <h1 className="nb-h2 mt-8">I build scalable web and software solutions.</h1>
 
             <p className="nb-body mt-6 max-w-[46ch]">
               I&apos;m <span className="text-[var(--nb-fg)] font-black">{personalData.name}</span> — a{" "}

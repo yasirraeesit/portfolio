@@ -94,10 +94,18 @@ function Experience() {
     <section id="experience" className="nb-section nb-section-shell">
       <div className="nb-container">
         <SectionHeader
-          eyebrow="Experience"
-          title="Career highlights"
-          subtitle="A cleaner, more editorial layout for the roles I’ve actually shipped."
+          eyebrow="Work history"
+          title="Where I’ve worked"
+          subtitle="Roles I’ve shipped across full-stack, WordPress, and training."
         />
+
+        <div className="mt-6 flex flex-wrap gap-3">
+          {["2+ years", "3 roles", "Full-stack + WordPress"].map((stat) => (
+            <Tag key={stat} className="bg-[var(--nb-surface)] text-[var(--nb-fg)]">
+              {stat}
+            </Tag>
+          ))}
+        </div>
 
         <div className="mt-10 grid gap-6">
           {experiences.map((experience, index) => (
