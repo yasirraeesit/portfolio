@@ -205,35 +205,6 @@ const Projects = () => {
           </Card>
         )}
 
-        {/* CTA Section */}
-        {sortedProjects.length > 0 && (
-          <div className="mt-20 text-center rounded-[3rem] p-10 lg:p-16 relative overflow-hidden group border-2 border-[var(--nb-border)] shadow-[10px_10px_0_0_var(--nb-shadow)] bg-[linear-gradient(135deg,color-mix(in_srgb,var(--nb-surface)_88%,var(--nb-accent)_12%)_0%,var(--nb-bg)_100%)]">
-            <div className="absolute inset-0 bg-grid opacity-20" />
-            <div className="relative z-10 flex flex-wrap justify-center gap-2 mb-6">
-              {["Architecture", "UI polish", "Production ready"].map((tag) => (
-                <span key={tag} className="px-3 py-1 rounded-full border-2 border-[var(--nb-border)] bg-[var(--nb-bg)] text-[10px] font-black uppercase tracking-[0.18em] shadow-[4px_4px_0_0_var(--nb-shadow)]">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <h3 className="text-4xl md:text-6xl font-black text-[var(--nb-fg)] mb-6 relative z-10 leading-none">
-              HAVE A <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">VISION?</span>
-            </h3>
-            <p className="text-[var(--nb-muted)] text-xl mb-12 max-w-2xl mx-auto relative z-10">
-              I'm always looking for ambitious projects to push the boundaries of what's possible on the web.
-            </p>
-            <button
-              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="group px-10 py-5 bg-[var(--nb-accent)] hover:brightness-110 text-[var(--nb-bg)] font-black rounded-2xl transition-all hover:scale-105 active:scale-95 inline-flex items-center gap-3 relative z-10 shadow-[0_20px_40px_rgba(16,185,129,0.2)] border-2 border-[var(--nb-border)]"
-            >
-              START A CONVERSATION
-              <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </button>
-          </div>
-        )}
       </div>
     </section>
   );

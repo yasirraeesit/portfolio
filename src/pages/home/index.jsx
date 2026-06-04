@@ -6,7 +6,6 @@ import Projects from "../../components/homepage/projects";
 import GitHubActivity from "../../components/homepage/github-activity";
 import Services from "../../components/homepage/services";
 import Education from "../../components/homepage/education";
-import ContactCTA from "../../components/homepage/contact-cta";
 import ContactSection from "../../components/homepage/contact";
 
 function HomePage() {
@@ -23,7 +22,6 @@ function HomePage() {
             <Services />
             <Education />
             <ContactSection />
-            <ContactCTA />
         </div>
     );
 }
